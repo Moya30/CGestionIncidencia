@@ -9,32 +9,36 @@ import { show_alerta } from "../../components/Alerta/Alertas";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from "axios";
+import { Spinner } from "@material-tailwind/react";
+
 
 function User() {
 
   const [posts, setPosts] = useState([]);
 
   const nombre = sessionStorage.getItem('rol');
+  const navigate = useNavigate();
+  const [sidebarToggle] = useOutletContext();
+  const [loading, setIsloading] = useState(true);
 
   useEffect(() => {
     getUsuario();
   }, []);
 
-  const getUsuario = () =>{
+  const getUsuario = () => {
     fetch('https://incidencias-fiisi.up.railway.app/api/usuario')
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setPosts(data);
+        setIsloading(false);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }
 
-  const navigate = useNavigate();
-  const [sidebarToggle] = useOutletContext();
-  const [loading] = useState(false);
+
   const dataHeader = [
     {
       key: "id",
@@ -69,14 +73,14 @@ function User() {
       showCancelButton: true, confirmButtonText: 'si, eliminar', cancelButoonText: 'cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-  
+
         axios.delete(`https://incidencias-fiisi.up.railway.app/api/usuario/${id}`)
           .then((response) => {
             var tipo = response.status ? "success" : "error";
             console.log("tipo", tipo);
             var msj = response.data;
             show_alerta(msj, tipo)
-            if(tipo === 'success'){
+            if (tipo === 'success') {
               getUsuario();
             }
           })
@@ -90,12 +94,17 @@ function User() {
       }
     });
 
+
+    // <Spinner className="h-16 w-16 text-gray-900/50" />
   };
 
   return (
     <>
-      {nombre === 'Administrador' ?  <Navigate to="/Usuario/User" /> : <Navigate to="/404" />}
+      {nombre === 'Administrador' ? <Navigate to="/Usuario/User" /> : <Navigate to="/404" />}
       <main className="h-full">
+
+
+
         <Navbar toggle={sidebarToggle} />
 
 
@@ -119,14 +128,15 @@ function User() {
               </div>
               <span>Añadir usuario</span>
             </button>
-            {/* termina boton añadir */}
-
+            
+           
             <UserTable
               loading={loading}
               dataHeader={dataHeader}
               data={posts}
               handleDelete={handleDelete}
             />
+          
           </div>
         </div>
       </main>
