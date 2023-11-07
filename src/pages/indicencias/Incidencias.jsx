@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useOutletContext } from "react-router-dom";
+import {Link, Navigate, useNavigate, useOutletContext } from "react-router-dom";
 import UserTableIncidencias from "../indicencias/UserTableIncidencias";
 import Navbar from "../../components/Navbar/Index";
 import Title from "./components/Title";
@@ -7,14 +7,16 @@ import withReactContent from "sweetalert2-react-content";
 import { show_alerta } from "../../components/Alerta/Alertas";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
 function Incidencias() {
 
   const [user, setUser] = useState([]);
   const [sidebarToggle] = useOutletContext();
   const [loading, setIsloading] = useState(true);
-
   const nombre = sessionStorage.getItem('rol');
+  const navigate = useNavigate();
 
   console.log("rol en incidencias", nombre);
   const fetchData = () => {
@@ -111,6 +113,18 @@ function Incidencias() {
           <Title text={"Incidencia"}></Title>
 
           <div className="border w-full border-gray-200 bg-white py-4 px-6 rounded-md">
+            
+          <button
+              onClick={() =>
+               navigate("/incidencias/AddIncidencia")}
+              className="bg-cyan-600 border-blue-500 text-gray-100 px-3 py-2 mt-5 mb-4 rounded-lg shadow-lg text-sm flex gap-2 items-center"
+            >
+              <div>
+                <FontAwesomeIcon icon={faFloppyDisk} />
+              </div>
+              <span>Registrar incidencia</span>
+            </button>
+            
             <UserTableIncidencias
               loading={loading}
               dataHeader={dataHeader}

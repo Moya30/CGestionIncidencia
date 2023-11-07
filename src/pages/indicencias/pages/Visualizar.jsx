@@ -2,8 +2,9 @@ import axios from "axios";
 import { useOutletContext } from "react-router-dom";
 import Navbar from "../../../components/Navbar/Index";
 import Title from "../components/Title";
-import Goback from "../components/Goback";
+
 import { useEffect, useState } from "react";
+import Goback from "../../../components/Other/Goback";
 
 function Visualizar() {
   const [sidebarToggle] = useOutletContext();
@@ -40,7 +41,7 @@ function Visualizar() {
 
         <div className="mainCard">
           {/* BOTON REGRESAR */}
-          <Goback></Goback>
+          <Goback  />
 
           {/* TITULO */}
           <Title text={"Visualizar incidencia"}></Title>

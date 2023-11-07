@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
 import Navbar from "../../../components/Navbar/Index";
 import Title from "../components/Title";
-import Goback from "../components/Goback";
 import axios from "axios";
 import { show_alerta } from "../../../components/Alerta/Alertas";
+import Goback from "../../../components/Other/Goback";
 
 
 function Solucion() {
@@ -72,7 +72,7 @@ function Solucion() {
 
         <div className="mainCard">
           {/* BOTON REGRESAR */}
-          <Goback></Goback>
+          <Goback />
 
           {/* TITULO */}
           <Title text={"Solución de la Incidencia"}></Title>
