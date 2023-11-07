@@ -10,8 +10,8 @@ function NotFound() {
 
       {/* Main Content */}
       <div className="mainCard">
-        <h1 className="text-xl font-semibold">Error 404 - Not Found</h1>
-        <p className="mt-2">Page is not found</p>
+        <h1 className="text-xl font-semibold">No tiene permisos para ver esta página</h1>
+        <p className="mt-2">Ponganse en contacto con el admin.</p>
       </div>
     </main>
   );

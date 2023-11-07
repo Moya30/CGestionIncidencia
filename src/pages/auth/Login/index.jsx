@@ -27,11 +27,14 @@ function LoginIndex() {
       .then(data => {
         console.log("todo el arreglo",data);
         const dat = data.idUsua;
+        const rol = data.persona.roles[0].nombRol
+        console.log("rol", rol);
         console.log("solo el nombre: ",dat);
         // Aquí puedes manejar la respuesta del servidor.
         if (data) {
-          sessionStorage.setItem('idUsua', dat);
-          localStorage.setItem('nombre', email)
+          sessionStorage.setItem('rol', rol);
+          localStorage.setItem('nombre', email);
+          localStorage.setItem('idUsua', dat);
           console.log("token: " + dat);
           navigate("/Dashboard")
         } else {

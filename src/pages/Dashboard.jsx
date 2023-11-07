@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react";
 import DashboardHeader from "../components/Other/DashboardHeader.jsx";
 import ScrolledCard from "../components/Widget/ScrolledCard.jsx";
 import { useOutletContext } from "react-router-dom";
+import LinesChart from "../components/Graficos/LinesChart.jsx";
 
 function Dashboard() {
 
-    const [data, setData] = useState([])
+  const [data, setData] = useState([])
 
   const avatar =
     "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80";
@@ -67,7 +68,7 @@ function Dashboard() {
     getIncidencias();
   }, []);
 
-  const getIncidencias = () =>{
+  const getIncidencias = () => {
     fetch('https://incidencias-fiisi.up.railway.app/api/incidencia')
       .then((response) => response.json())
       .then((data) => {
@@ -82,6 +83,7 @@ function Dashboard() {
   const [sidebarToggle] = useOutletContext();
 
   const nombre = localStorage.getItem('nombre');
+  const nom = sessionStorage.getItem('rol');
 
   return (
     <>
@@ -91,6 +93,7 @@ function Dashboard() {
           toggle={sidebarToggle}
           avatar={avatar}
           user={{ name: nombre }}
+          nomb={nom}
         />
 
         {/* Estdisticas */}
@@ -102,6 +105,17 @@ function Dashboard() {
         </div> 
 
         {/* OS Kredit */}
+
+        <div className="px-2 mx-auto mainCard">
+
+          <div >
+          <LinesChart />
+        </div>
+
+          <div className="lg:w-full w-[1024px] overflow-hidden flex flex-row justify-between text-slate-700 gap-2 lg:max-h-screen overflow-x-auto whitespace-nowrap"></div>
+        </div>
+       
+
         <div className="px-2 mx-auto mainCard">
           <h1 className="text-slate-500 pb-3 text-base md:text-lg">
             Incidencias Pendientes

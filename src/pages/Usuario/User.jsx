@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Index";
-import { useOutletContext } from "react-router-dom";
+import { Navigate, useOutletContext } from "react-router-dom";
 import UserTable from "./UserTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +13,8 @@ import axios from "axios";
 function User() {
 
   const [posts, setPosts] = useState([]);
+
+  const nombre = sessionStorage.getItem('rol');
 
   useEffect(() => {
     getUsuario();
@@ -92,14 +94,13 @@ function User() {
 
   return (
     <>
+      {nombre === 'Administrador' ?  <Navigate to="/Usuario/User" /> : <Navigate to="/404" />}
       <main className="h-full">
         <Navbar toggle={sidebarToggle} />
 
 
         {/* Tabla */}
         <div className="mainCard">
-
-
 
           <div className="border w-full border-gray-200 bg-white py-4 px-6 rounded-md">
 

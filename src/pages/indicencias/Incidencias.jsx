@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { Navigate, useOutletContext } from "react-router-dom";
 import UserTableIncidencias from "../indicencias/UserTableIncidencias";
 import Navbar from "../../components/Navbar/Index";
 import Title from "./components/Title";
@@ -12,6 +12,9 @@ function Incidencias() {
 
   const [user, setUser] = useState([]);
 
+  const nombre = sessionStorage.getItem('rol');
+
+  console.log("rol en incidencias",nombre);
   const fetchData = () => {
     return axios
       .get("https://incidencias-fiisi.up.railway.app/api/incidencia")
@@ -90,6 +93,8 @@ function Incidencias() {
 
   return (
     <>
+    {nombre === 'Administrador' || 'Personal' ?  <Navigate to="/Incidencias" /> : <Navigate to="/" />}
+    
       <main className="h-full">
         <Navbar toggle={sidebarToggle} />
         {/* Main Content */}
