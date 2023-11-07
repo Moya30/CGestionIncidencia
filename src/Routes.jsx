@@ -11,6 +11,7 @@ import Incidencias  from "./pages/indicencias/Incidencias";
 import Visualizar from "./pages/indicencias/pages/Visualizar"
 import Solucion from "./pages/indicencias/pages/Solucion";
 import User from "./pages/Usuario/User";
+import ViewUser from "./pages/Usuario/ViewUser";
 import { useState } from "react";
 import { ReporteUser } from "./pages/Reportes/ReporteUser";
 
@@ -45,8 +46,9 @@ function AppRouter() {
                 <Route path="/incidencias/visualizar" element={<Visualizar />}></Route>
                 <Route path="/incidencias/solucion" element={<Solucion />}></Route>
                 <Route path="/Usuario/User" element={<User />}></Route>
-                <Route path="/Reportes/ReporteUser" element={<ReporteUser />}></Route>
                 <Route path="/Usuario/DetailsUser" element={<DetailsUser />}></Route>
+                <Route path="/Usuario/ViewUser" element={<ViewUser />}></Route>
+                <Route path="/Reportes/ReporteUser" element={<ReporteUser />}></Route>
                 <Route path="/404" element={<NotFound />}></Route>
                 <Route path="/form" element={<Form />}></Route>
             </Route>

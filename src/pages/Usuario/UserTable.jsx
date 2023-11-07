@@ -48,7 +48,8 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
             </TableCell>
             <TableCell>
               <Link
-                to={`/auth/master/user/${row.id}/edit`}
+                
+                to={`/Usuario/ViewUser?userID=${row.idUsua}`}
                 className={`text-gray-500 inline-flex py-2 px-2 rounded  text-sm`}
               >
                 <FontAwesomeIcon icon={faEye} />
