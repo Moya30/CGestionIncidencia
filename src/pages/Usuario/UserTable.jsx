@@ -4,7 +4,7 @@ import Datatables from "../../components/Datatables/Table";
 import TableCell from "../../components/Datatables/TableCell";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { Circles, CirclesWithBar } from "react-loader-spinner";
+import { Circles, CirclesWithBar, ThreeDots } from "react-loader-spinner";
 
 function UserTable({ loading, dataHeader, data, handleDelete }) {
   return (
@@ -13,15 +13,16 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
 
       <Datatables loading={loading} dataHeader={dataHeader}>
         {
-          loading && (<Circles
-            height="60"
-            width="60"
-            color="#4fa94d"
-            ariaLabel="circles-loading"
+          loading && (<ThreeDots
+            height="80" 
+            width="80" 
+            radius="9"
+            color="#4fa94d" 
+            ariaLabel="three-dots-loading"
             wrapperStyle={{}}
-            wrapperClass=""
+            wrapperClassName=""
             visible={true}
-          />)
+             />)
         }
         {data?.map((row, index) => (
           <tr

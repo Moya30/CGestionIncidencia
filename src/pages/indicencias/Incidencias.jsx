@@ -11,22 +11,30 @@ import Swal from "sweetalert2";
 function Incidencias() {
 
   const [user, setUser] = useState([]);
+  const [sidebarToggle] = useOutletContext();
+  const [loading, setIsloading] = useState(true);
 
   const nombre = sessionStorage.getItem('rol');
 
-  console.log("rol en incidencias",nombre);
+  console.log("rol en incidencias", nombre);
   const fetchData = () => {
     return axios
       .get("https://incidencias-fiisi.up.railway.app/api/incidencia")
-      .then((response) => setUser(response.data));
+      .then((response) => {
+        setUser(response.data)
+        setIsloading(false)
+      }
+      );
+
   };
+  ;
 
   useEffect(() => {
     fetchData();
+
   }, []);
 
-  const [sidebarToggle] = useOutletContext();
-  const [loading] = useState(false);
+
   const dataHeader = [
     {
       key: "nincidencia",
@@ -63,19 +71,19 @@ function Incidencias() {
   const handleDelete = (id, title) => {
     const MySwal = withReactContent(Swal);
     MySwal.fire({
-      title: '¿Estas seguro que eliminar la incidencia N°' +id + " del usuario " + title + '?',
+      title: '¿Estas seguro que eliminar la incidencia N°' + id + " del usuario " + title + '?',
       icon: 'question', text: 'Si esta seguro, haga click en “Eliminar” y los datos de la incidencia será eliminado.',
       showCancelButton: true, confirmButtonText: 'Eliminar', cancelButoonText: 'cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-  
+
         axios.delete(`https://incidencias-fiisi.up.railway.app/api/incidencia/${id}`)
           .then((response) => {
             var tipo = response.status ? "success" : "error";
             console.log("tipo", tipo);
             var msj = response.data;
             show_alerta(msj, tipo)
-            if(tipo === 'success'){
+            if (tipo === 'success') {
               fetchData();
             }
           })
@@ -93,8 +101,8 @@ function Incidencias() {
 
   return (
     <>
-    {nombre === 'Administrador' || 'Personal' ?  <Navigate to="/Incidencias" /> : <Navigate to="/" />}
-    
+      {nombre === 'Administrador' || 'Personal' ? <Navigate to="/Incidencias" /> : <Navigate to="/" />}
+
       <main className="h-full">
         <Navbar toggle={sidebarToggle} />
         {/* Main Content */}

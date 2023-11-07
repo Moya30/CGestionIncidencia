@@ -8,6 +8,7 @@ import TableCell from "../../components/Datatables/TableCell";
 
 import axios from "axios";
 import moment from "moment/moment";
+import { ThreeDots } from "react-loader-spinner";
 
 function UserTableIncidencias({ loading, dataHeader,data, handleDelete }) {
   const [user, setUser] = useState([]);
@@ -28,6 +29,20 @@ function UserTableIncidencias({ loading, dataHeader,data, handleDelete }) {
     <>
       {/* TABLA DE LOS DATOS */}
       <Datatables loading={loading} dataHeader={dataHeader}>
+
+      {
+          loading && (<ThreeDots
+            height="80" 
+            width="80" 
+            radius="9"
+            color="#4fa94d" 
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+             />)
+        }
+
         {data &&
           data.length > 0 &&
           data.map((row, index) => (

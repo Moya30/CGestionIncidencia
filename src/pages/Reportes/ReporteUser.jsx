@@ -1,49 +1,21 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import Iframe from 'react-iframe';
-import { Document, Page } from 'react-pdf';
-
+import Navbar from "../../components/Navbar/Index";
+import React from 'react'
+import { useOutletContext } from 'react-router-dom';
 
 export const ReporteUser = () => {
-
-    const [data, setData] = useState("")
-
-    let pages = 1;
-
-    useEffect(() => {
-        getUsuario();
-    }, []);
-
-    const getUsuario = () => {
-        axios.get('https://incidencias-fiisi.up.railway.app/api/usuario/reporte').then((response) => {
-            setData(response.data);
-        });
-    }
-    console.log(data);
-    const encoder = new TextEncoder();
-    const byteArray = encoder.encode(data);
+    const [sidebarToggle] = useOutletContext();
+  return (
+    <>
     
-    const file = new Blob([byteArray]);
-    const fileURL = URL.createObjectURL(file);
-    //window.open(fileURL, '_blank');
+    <main className="h-full">
+        <Navbar toggle={sidebarToggle} />
 
-    return (
-        <>
-            <div>ReporteUser</div>
-
-            <Document file={fileURL} >
-                <Page pageNumber={pages} />
-            </Document>
-            <Iframe url={fileURL}
-                width="640px"
-                height="320px"
-                id=""
-                className=""
-                display="block"
-                position="relative" />
-
-        </>
-
-
-    )
+        {/* Main Content */}
+        <div className="mainCard">
+         
+        </div>
+      </main>
+    
+    </>
+  )
 }
