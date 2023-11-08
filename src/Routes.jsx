@@ -14,6 +14,7 @@ import User from "./pages/Usuario/User";
 import ViewUser from "./pages/Usuario/ViewUser";
 import { useState } from "react";
 import { ReporteUser } from "./pages/Reportes/ReporteUser";
+import { AddIncidencia } from "./pages/indicencias/AddIncidencia";
 
 
 function AppRouter() {
@@ -45,6 +46,7 @@ function AppRouter() {
                 <Route path="/incidencias" element={<Incidencias />}></Route>
                 <Route path="/incidencias/visualizar" element={<Visualizar />}></Route>
                 <Route path="/incidencias/solucion" element={<Solucion />}></Route>
+                <Route path="/incidencias/AddIncidencia" element={<AddIncidencia />}></Route>
                 <Route path="/Usuario/User" element={<User />}></Route>
                 <Route path="/Usuario/DetailsUser" element={<DetailsUser />}></Route>
                 <Route path="/Usuario/ViewUser" element={<ViewUser />}></Route>

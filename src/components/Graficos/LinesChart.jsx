@@ -29,12 +29,12 @@ var midata = {
     labels: meses,
     datasets: [ // Cada una de las líneas del gráfico
         {
-            label: 'Beneficios',
+            label: 'Incidencias',
             data: beneficios,
             tension: 0.5,
             fill : true,
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            borderColor: 'rgb(10 150 29)',
+            backgroundColor: 'rgba(10 150 29)',
             pointRadius: 5,
             pointBorderColor: 'rgba(255, 99, 132)',
             pointBackgroundColor: 'rgba(255, 99, 132)',
