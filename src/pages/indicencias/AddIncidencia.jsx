@@ -74,7 +74,7 @@ export const AddIncidencia = () => {
                                         id="country"
                                         name="country"
                                         autoComplete="country-name"
-                                        className="block w-full rounded-md border focus:border-emerald-400 py-2   "
+                                        className="block w-full rounded-md border focus:border-emerald-400 py-2 "
                                         value
                                     //   onChange={(e) => setNombRol(e.target.value)}
                                     >

@@ -113,15 +113,17 @@ function User() {
 
           <div className="border w-full border-gray-200 bg-white py-4 px-6 rounded-md">
 
-            <h1 className="text-center text-black text-xl">
+            <h1 className="text-center font-semibold text-lg mb-5">
               Usuarios
             </h1>
+
+            <hr />
 
             {/* Inicia boton añadir */}
             <button
               onClick={() =>
                 navigate("/Usuario/DetailsUser")}
-              className="bg-cyan-600 border-blue-500 text-gray-100 px-3 py-2 mt-5 mb-4 rounded-lg shadow-lg text-sm flex gap-2 items-center"
+              className="bg-cyan-600 border-blue-500 text-gray-100 px-3 py-2 mt-6 mb-4 rounded-lg shadow-lg text-sm flex gap-2 items-center"
             >
               <div>
                 <FontAwesomeIcon icon={faFloppyDisk} />
