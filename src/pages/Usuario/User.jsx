@@ -102,12 +102,7 @@ function User() {
     <>
       {nombre === 'Administrador' ? <Navigate to="/Usuario/User" /> : <Navigate to="/404" />}
       <main className="h-full">
-
-
-
         <Navbar toggle={sidebarToggle} />
-
-
         {/* Tabla */}
         <div className="mainCard">
 
@@ -130,15 +125,15 @@ function User() {
               </div>
               <span>Añadir usuario</span>
             </button>
-            
-           
+
+
             <UserTable
               loading={loading}
               dataHeader={dataHeader}
               data={posts}
               handleDelete={handleDelete}
             />
-          
+
           </div>
         </div>
       </main>

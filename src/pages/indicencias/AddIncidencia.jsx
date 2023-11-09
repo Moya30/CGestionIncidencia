@@ -1,11 +1,98 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Index";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import Goback from "../../components/Other/Goback";
 export const AddIncidencia = () => {
     const [sidebarToggle] = useOutletContext();
     const navigate = useNavigate();
+
+    //area
+    const [area, setArea] = useState("");
+    const [options, setOptions] = useState([]);
+
+    // capturarIdArea
+    const [idare, setIdare] = useState(0);
+
+    //salon 
+    const [salon, setSalon] = useState("");
+    const [optionSalon, setOptionSalon] = useState([]);
+
+    //Tipo incidencia
+
+    const [tipoincidencia, setTipoincidencia] = useState("");
+    const [optionTipoIncidencia, setOptionTipoIncidencia] = useState([]);
+
     const handleSumitChange = () => { };
+
+    useEffect(() => {
+        getUsuario();
+
+    }, [options]);
+
+
+
+    const getUsuario = () => {
+        fetch('https://incidencias-fiisi.up.railway.app/api/area')
+            .then((response) => response.json())
+            .then((data) => {
+                setOptions(data);
+
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+        setIdare("");
+    }
+
+    useEffect(() => {
+        getTipoIncidencia();
+
+    }, []);
+
+    const getTipoIncidencia = () => {
+        fetch('https://incidencias-fiisi.up.railway.app/api/tipoincidencia')
+            .then((response) => response.json())
+            .then((data) => {
+                setOptionTipoIncidencia(data);
+
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+        setIdare("");
+    }
+
+
+
+    const handleSeleccionChange = (event) => {
+        //setArea(event.target.value)
+        const opcion = event.target.value; // Valor de la opción seleccionada
+        setArea(opcion); // Actualiza el estado con la opción seleccionada
+        const opcionId = options.find((item) => item.nombArea === opcion).idArea; // Busca el ID de la opción seleccionada
+        setIdare(opcionId); // Actualiza el estado con el ID
+        console.log("ids", opcionId)
+    };
+
+    const getSalon = () => {
+        fetch(`https://incidencias-fiisi.up.railway.app/api/salon/area/${idare}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setOptionSalon(data);
+                console.log("info salon", data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }
+
+    useEffect(() => {
+        if (idare) {
+            getSalon();
+            setIdare("");
+        }
+
+    }, [idare])
+
 
     return (
         <>
@@ -33,15 +120,20 @@ export const AddIncidencia = () => {
                                         name="country"
                                         autoComplete="country-name"
                                         className="block w-full rounded-md border focus:border-emerald-400 py-2   "
-                                        value
-                                    //   onChange={(e) => setNombRol(e.target.value)}
+                                        value={area}
+                                        onChange={handleSeleccionChange}
                                     >
-                                        <option value="">Seleccione un area </option>
-                                        {/* {options.map((option) => (
-                                        <option key={option.id} value={option.value}>
-                                        {option.nombRol}
-                                        </option>
-                                    ))} */}
+                                        <option value="" >Seleccione un area </option>
+                                        {options.map((option) => (
+                                            <option
+                                                key={option.idArea}
+                                                value={option.nombArea}
+                                            >
+                                                {option.nombArea}
+
+
+                                            </option>
+                                        ))}
                                     </select>
 
                                 </div>
@@ -54,15 +146,16 @@ export const AddIncidencia = () => {
                                         name="country"
                                         autoComplete="country-name"
                                         className="block w-full rounded-md border focus:border-emerald-400 py-2   "
-                                        value
-                                    //   onChange={(e) => setNombRol(e.target.value)}
+                                        value={salon}
+                                        onChange={(e) => setSalon(e.target.value)}
                                     >
                                         <option value="">Seleeccione un salon</option>
-                                        {/* {options.map((option) => (
-                                        <option key={option.id} value={option.value}>
-                                        {option.nombRol}
-                                        </option>
-                                    ))} */}
+                                        {optionSalon.map((option) => (
+                                            <option key={option.idSalon} value={option}>
+                                                {option.nombSalon}
+                                            </option>
+                                        ))}
+
                                     </select>
 
                                 </div>
@@ -75,15 +168,15 @@ export const AddIncidencia = () => {
                                         name="country"
                                         autoComplete="country-name"
                                         className="block w-full rounded-md border focus:border-emerald-400 py-2 "
-                                        value
-                                    //   onChange={(e) => setNombRol(e.target.value)}
+                                        value={tipoincidencia}
+                                        onChange={(e) => setTipoincidencia(e.target.value)}
                                     >
                                         <option value="">Seleeccione el tipo de incidencia</option>
-                                        {/* {options.map((option) => (
-                                        <option key={option.id} value={option.value}>
-                                        {option.nombRol}
-                                        </option>
-                                    ))} */}
+                                        {optionTipoIncidencia.map((option) => (
+                                            <option key={option.idTipoInci} value={option}>
+                                                {option.nombTipoInci}
+                                            </option>
+                                        ))}
                                     </select>
 
                                 </div>
@@ -121,10 +214,10 @@ export const AddIncidencia = () => {
                                     </button>
                                 </div>
                                 <div className="mt-5 flex flex-row gap-4">
-                                    <button 
-                                    onClick={() =>
-                                        navigate("/incidencias")}
-                                    className="bg-slate-500 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
+                                    <button
+                                        onClick={() =>
+                                            navigate("/incidencias")}
+                                        className="bg-slate-500 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
                                         Cancelar
                                     </button>
                                 </div>
