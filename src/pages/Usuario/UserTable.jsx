@@ -35,7 +35,13 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
               </span>
             </TableCell>
             <TableCell dataLabel="Email" showLabel={true}>
+              <p className="font-normal text-sm text-gray-500">{row.persona.nombPers + " " + row.persona.appaPers + " " + row.persona.apmaPers}</p>
+            </TableCell>
+            <TableCell showLabel={true}>
               <p className="font-normal text-sm text-gray-500">{row.nombUsua}</p>
+            </TableCell>
+            <TableCell showLabel={true}>
+              <p className="font-normal text-sm text-gray-500">{row.persona.roles[0].nombRol}</p>
             </TableCell>
             <TableCell dataLabel="Email" showLabel={true}>
               <p className="font-normal text-sm text-gray-500">{row.persona.dniPers}</p>

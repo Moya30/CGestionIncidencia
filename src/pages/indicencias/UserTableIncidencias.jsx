@@ -60,12 +60,17 @@ function UserTableIncidencias({ loading, dataHeader,data, handleDelete }) {
               </TableCell>
               <TableCell dataLabel="SALON" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
-                  {row.salon.nombSalon}
+                  {row.tipoIncidencia.nombTipoInci}
                 </p>
               </TableCell>
               <TableCell dataLabel="ASUNTO" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
-                  {row.tipoIncidencia.nombTipoInci}
+                  {row.tipoIncidencia.prioridad.nombPrio}
+                </p>
+              </TableCell>
+              <TableCell dataLabel="ASUNTO" showLabel={true}>
+                <p className="font-normal text-sm text-gray-500">
+                  {row.tipoSeguimiento.nombTipoSegui}
                 </p>
               </TableCell>
               <TableCell dataLabel="FECHA" showLabel={true}>
