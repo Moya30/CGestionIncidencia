@@ -2,27 +2,63 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Index";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import Goback from "../../components/Other/Goback";
+import AddIncidenc from "../../libs/Incidencia/AddIncidenc";
+import { show_alerta } from "../../components/Alerta/Alertas";
 export const AddIncidencia = () => {
     const [sidebarToggle] = useOutletContext();
     const navigate = useNavigate();
 
+    const [nombInci, setNombInci] = useState("");
+    const [descInci, setDescInci] = useState("");
+
     //area
     const [area, setArea] = useState("");
     const [options, setOptions] = useState([]);
-
     // capturarIdArea
     const [idare, setIdare] = useState(0);
 
     //salon 
     const [salon, setSalon] = useState("");
     const [optionSalon, setOptionSalon] = useState([]);
+    const [idSalon, setIdSalon] = useState(0);
+    //console.log(salon.idSalon);
 
     //Tipo incidencia
-
     const [tipoincidencia, setTipoincidencia] = useState("");
     const [optionTipoIncidencia, setOptionTipoIncidencia] = useState([]);
+    const [idTipoInci, setIdTipoInci] = useState(0);
 
-    const handleSumitChange = () => { };
+
+    // idUser
+    const [idUsuario, setIdUsuario] = useState(0);
+
+
+    const handleSumitChange = async (e) => {
+
+        e.preventDefault();
+
+        const incidencia = await AddIncidenc(
+             idSalon,
+            idTipoInci,
+            nombInci,
+            descInci,
+             idUsuario ,
+        );
+        show_alerta('Incidencia Registrada', 'success');
+        if (incidencia.message) {
+            console.log("error en grabado")
+            return;
+        }
+        navigate(`/incidencias`);
+    };
+
+    useEffect(() => {
+
+        const ids = localStorage.getItem('idUsua');
+        setIdUsuario(ids);
+        console.log(ids);
+    }, [])
+
 
     useEffect(() => {
         getUsuario();
@@ -71,6 +107,26 @@ export const AddIncidencia = () => {
         const opcionId = options.find((item) => item.nombArea === opcion).idArea; // Busca el ID de la opción seleccionada
         setIdare(opcionId); // Actualiza el estado con el ID
         console.log("ids", opcionId)
+    };
+
+    //capturar id de salon 
+
+    const handleIdSalon = (event) => {
+        //setArea(event.target.value)
+        const opcion = event.target.value; // Valor de la opción seleccionada
+        setSalon(opcion); // Actualiza el estado con la opción seleccionada
+        const opcionId = optionSalon.find((item) => item.nombSalon === opcion).idSalon; // Busca el ID de la opción seleccionada
+        setIdSalon(opcionId); // Actualiza el estado con el ID
+        console.log("ids SALON", opcionId)
+    };
+
+    const handleIdTipoIncidencia = (event) => {
+        //setArea(event.target.value)
+        const opcion = event.target.value; // Valor de la opción seleccionada
+        setTipoincidencia(opcion); // Actualiza el estado con la opción seleccionada
+        const opcionId = optionTipoIncidencia.find((item) => item.nombTipoInci === opcion).idTipoInci; // Busca el ID de la opción seleccionada
+        setIdTipoInci(opcionId); // Actualiza el estado con el ID
+        console.log("ids incidentipo: ", opcionId)
     };
 
     const getSalon = () => {
@@ -147,11 +203,11 @@ export const AddIncidencia = () => {
                                         autoComplete="country-name"
                                         className="block w-full rounded-md border focus:border-emerald-400 py-2   "
                                         value={salon}
-                                        onChange={(e) => setSalon(e.target.value)}
+                                        onChange={handleIdSalon}
                                     >
                                         <option value="">Seleeccione un salon</option>
                                         {optionSalon.map((option) => (
-                                            <option key={option.idSalon} value={option}>
+                                            <option key={option.idSalon} value={option.value}>
                                                 {option.nombSalon}
                                             </option>
                                         ))}
@@ -169,11 +225,11 @@ export const AddIncidencia = () => {
                                         autoComplete="country-name"
                                         className="block w-full rounded-md border focus:border-emerald-400 py-2 "
                                         value={tipoincidencia}
-                                        onChange={(e) => setTipoincidencia(e.target.value)}
+                                        onChange={handleIdTipoIncidencia}
                                     >
                                         <option value="">Seleeccione el tipo de incidencia</option>
                                         {optionTipoIncidencia.map((option) => (
-                                            <option key={option.idTipoInci} value={option}>
+                                            <option key={option.idTipoInci} value={option.value}>
                                                 {option.nombTipoInci}
                                             </option>
                                         ))}
@@ -188,7 +244,7 @@ export const AddIncidencia = () => {
                                         id="defaultInput"
                                         type="text"
                                         name="defaultInput"
-                                        // onChange={(e) => setNombUsua(e.target.value)}
+                                        onChange={(e) => setNombInci(e.target.value)}
                                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
                                         placeholder="Nomb incidencia"
                                     />
@@ -201,6 +257,7 @@ export const AddIncidencia = () => {
                                         id="User"
                                         type="text"
                                         name="user"
+                                        onChange={(e) => setDescInci(e.target.value)}
                                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
                                         placeholder="descripción de la incidencia"
                                     />
