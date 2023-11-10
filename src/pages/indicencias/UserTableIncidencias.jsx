@@ -10,7 +10,7 @@ import axios from "axios";
 import moment from "moment/moment";
 import { ThreeDots } from "react-loader-spinner";
 
-function UserTableIncidencias({ loading, dataHeader,data, handleDelete }) {
+function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
   const [user, setUser] = useState([]);
 
   const fetchData = () => {
@@ -23,30 +23,31 @@ function UserTableIncidencias({ loading, dataHeader,data, handleDelete }) {
     fetchData();
   }, []);
 
-
+  const [tipoSeguimiento, setTipoSeguimiento] = useState("");
+  console.log("aaa", tipoSeguimiento);
 
   return (
     <>
       {/* TABLA DE LOS DATOS */}
       <Datatables loading={loading} dataHeader={dataHeader}>
 
-      {
+        {
           loading && (<ThreeDots
-            height="80" 
-            width="80" 
+            height="80"
+            width="80"
             radius="9"
-            color="#4fa94d" 
+            color="#4fa94d"
             ariaLabel="three-dots-loading"
             wrapperStyle={{}}
             wrapperClassName=""
             visible={true}
-             />)
+          />)
         }
 
         {data &&
           data.length > 0 &&
           data.map((row, index) => (
-            
+
             <tr key={row.idInci}>
               <TableCell dataLabel="Name" showLabel={true}>
                 <span className="font-medium text-sm text-gray-900">
@@ -59,7 +60,8 @@ function UserTableIncidencias({ loading, dataHeader,data, handleDelete }) {
                 </p>
               </TableCell>
               <TableCell dataLabel="SALON" showLabel={true}>
-                <p className="font-normal text-sm text-gray-500">
+                <p
+                  className="font-normal text-sm text-gray-500">
                   {row.tipoIncidencia.nombTipoInci}
                 </p>
               </TableCell>
@@ -85,23 +87,42 @@ function UserTableIncidencias({ loading, dataHeader,data, handleDelete }) {
               </TableCell>
 
               <TableCell>
+
+
                 <Link
                   to={`/incidencias/visualizar?incidenciaID=${row.idInci}`}
                   className={`text-gray-500 inline-flex py-2 px-2 rounded  text-sm`}
                 >
-                  <FontAwesomeIcon icon={faEye} />
+                  {  row.tipoSeguimiento.nombTipoSegui === 'Proceso' ?
+                    (<FontAwesomeIcon icon={faEye} style={{ color: "#10b2ee", }} />) 
+                    : row.tipoSeguimiento.nombTipoSegui === 'Resuelto' ? (<FontAwesomeIcon icon={faEye} style={{ color: "#10b2ee", }}/>) 
+                    : row.tipoSeguimiento.nombTipoSegui === 'Registrado' ? (<FontAwesomeIcon icon={faEye}/>)
+                    : (<FontAwesomeIcon icon={faEye} />)
+                  }
+                  
                 </Link>
+
                 <Link
                   to={`/incidencias/solucion?incidenciaID=${row.idInci}`}
                   className={`text-gray-500 inline-flex py-2 px-2 rounded  text-sm`}
                 >
-                  <FontAwesomeIcon icon={faLightbulb} />
+                  {/* {row.tipoSeguimiento.nombTipoSegui === 'Proceso' ?
+                    (<FontAwesomeIcon icon={faLightbulb} style={{ color: "#10b2ee", }} />) : (<FontAwesomeIcon icon={faLightbulb} />)
+                  } */}
+                  {  row.tipoSeguimiento.nombTipoSegui === 'Proceso' ?
+                    (<FontAwesomeIcon icon={faLightbulb} />) 
+                    : row.tipoSeguimiento.nombTipoSegui === 'Resuelto' ? (<FontAwesomeIcon icon={faLightbulb} style={{color: "#f4cc06",}}/>) 
+                    : row.tipoSeguimiento.nombTipoSegui === 'Registrado' ? (<FontAwesomeIcon icon={faLightbulb}/>)
+                    : (<FontAwesomeIcon icon={faLightbulb} />)
+                  }
+                  
+
                 </Link>
 
-                <Link 
+                <Link
                   onClick={(e) => {
                     e.preventDefault();
-                    handleDelete(row.idInci,row.usuario.nombUsua);
+                    handleDelete(row.idInci, row.usuario.nombUsua);
                   }}
                   to={"/incidencias"}
                   className={`text-gray-500 inline-flex py-2 px-2 rounded  text-sm`}
@@ -111,7 +132,7 @@ function UserTableIncidencias({ loading, dataHeader,data, handleDelete }) {
               </TableCell>
             </tr>
 
-            
+
           ))}
       </Datatables>
     </>

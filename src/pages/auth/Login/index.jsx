@@ -25,13 +25,13 @@ function LoginIndex() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("todo el arreglo",data);
-        const dat = data.idUsua;
-        const rol = data.persona.roles[0].nombRol
+        console.log("todo el arreglo",data.usuario);
+        const dat = data.usuario.idUsua;
+        const rol = data.usuario.persona.rol.nombRol
         console.log("rol", rol);
         console.log("solo el nombre: ",dat);
         // Aquí puedes manejar la respuesta del servidor.
-        if (data) {
+        if (data.usuario) {
           sessionStorage.setItem('rol', rol);
           localStorage.setItem('nombre', email);
           localStorage.setItem('idUsua', dat);

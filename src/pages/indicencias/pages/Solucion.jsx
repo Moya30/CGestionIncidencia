@@ -9,13 +9,13 @@ import Goback from "../../../components/Other/Goback";
 
 function Solucion() {
 
-  
+
   const [sidebarToggle] = useOutletContext();
-  const [idInci, setIdInci] = useState("");
+  const [idInci, setIdInci] = useState(0);
   const [descSolu, setDescSolu] = useState("");
   const [costoSolu, setCostoSolu] = useState("");
   const [idUsua, setIdsua] = useState("");
-  
+
   const incidi = 15;
 
   const navigate = useNavigate();
@@ -28,8 +28,8 @@ function Solucion() {
   useEffect(() => {
     ids = localStorage.getItem('idUsua');
     setIdsua(ids);
-    console.log("sads",ids);
-    
+    console.log("sads", ids);
+
     axios
       .get(
         `https://incidencias-fiisi.up.railway.app/api/incidencia/${incidenciaID}`
@@ -43,26 +43,30 @@ function Solucion() {
   }, []);
 
   const data = {
-    
+
     idInci: incidenciaID,
     descSolu,
     costoSolu,
-    idUsua: 1
-};
+    idUsua: idUsua
+  };
 
   const handleSumitChange = async (e) => {
     e.preventDefault();
 
-   axios.post(
-      "https://incidencias-fiisi.up.railway.app/api/solucion",data
-     
-    );
-    show_alerta("Usuario Registrado", "success");
-    if (solution.message) {
-      console.log("error en grabado");
-      return;
-    }
-    navigate(`/incidencias`);
+    axios.post(
+      "https://incidencias-fiisi.up.railway.app/api/solucion", data
+
+    )
+      .then(function (response) {
+        if (response.data === "YA EXISTE") {
+          show_alerta("Ya existe una solución, no seas gil :v ", "error");
+          
+        } else {
+          show_alerta("Solucionado", "success");
+          navigate(`/incidencias`);
+        }
+        
+      })
   };
 
   return (
@@ -157,7 +161,7 @@ function Solucion() {
                     />
                   </div>
 
-                
+
                   <div className="mt-6">
                     <label
                       htmlFor="largeInput"
