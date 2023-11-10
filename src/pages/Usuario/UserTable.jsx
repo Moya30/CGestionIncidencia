@@ -44,9 +44,6 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
               <p className="font-normal text-sm text-gray-500">{row.persona.roles[0].nombRol}</p>
             </TableCell>
             <TableCell dataLabel="Email" showLabel={true}>
-              <p className="font-normal text-sm text-gray-500">{row.persona.dniPers}</p>
-            </TableCell>
-            <TableCell dataLabel="Email" showLabel={true}>
               <p className="font-normal text-sm text-gray-500">{row.persona.telfPers}</p>
             </TableCell>
             <TableCell dataLabel="Email" showLabel={true}>

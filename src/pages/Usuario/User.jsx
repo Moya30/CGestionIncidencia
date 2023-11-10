@@ -54,10 +54,6 @@ function User() {
       label: "ROL",
     },
     {
-      key: "dni",
-      label: "Dni",
-    },
-    {
       key: "telefono",
       label: "Telefono",
     },
