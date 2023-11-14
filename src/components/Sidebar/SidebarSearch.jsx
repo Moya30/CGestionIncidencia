@@ -23,13 +23,7 @@ function SidebarSearch({ scButton, handleChange, clearSearch, search }) {
           ></FontAwesomeIcon>
         )}
 
-        {scButton && (
-          <FontAwesomeIcon
-            icon={faTimes}
-            className="absolute right-6 cursor-pointer text-slate-500"
-            onClick={clearSearch}
-          ></FontAwesomeIcon>
-        )}
+        
       </div>
     </div>
   );

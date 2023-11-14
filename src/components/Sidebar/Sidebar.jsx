@@ -7,6 +7,7 @@ import SidebarLogo from "./SidebarLogo.jsx";
 import SidebarSearch from "./SidebarSearch.jsx";
 import MenuList from "./MenuList.jsx";
 import { useNavigate } from "react-router-dom";
+import { Sidebaruser } from "./Sidebaruser.jsx";
 
 // aqui para configurar lo del meu lateral
 
@@ -40,6 +41,8 @@ function Sidebar({ ...props }) {
     navigate("/");
   };
 
+  const nombre = localStorage.getItem('nombre');
+  const nom = sessionStorage.getItem('rol');
   return (
     <>
       <aside
@@ -49,7 +52,10 @@ function Sidebar({ ...props }) {
         {/* Sidebar wrapper */}
         <div className="md:w-64 border-r-2 border-gray-100 h-full flex-col flex flex-shrink-0">
           {/* Logo */}
-          <SidebarLogo toggle={props.toggle} icon={faPaperclip} text="Sistema de incidencias" />
+          {/* <SidebarLogo toggle={props.toggle} icon={faPaperclip} text="Sistema de incidencias" /> */}
+
+          <Sidebaruser  user={{ name: nombre }} nomb={nom}></Sidebaruser>
+
 
           {/* Search Menu */}
           <SidebarSearch

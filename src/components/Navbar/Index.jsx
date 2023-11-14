@@ -3,34 +3,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 function Index({ toggle }) {
-  const nombre = sessionStorage.getItem('rol');
+  const nombre = sessionStorage.getItem("rol");
   const avatar =
     "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80";
 
   return (
     <>
       <header className="">
-        <div className="shadow-sm">
-          <div className="relative bg-white flex w-full items-center px-5 py-2.5">
-            <div className="flex-1">
-              <p className="block md:hidden cursor-pointer">
+        <div>
+          <div className="px-3 sm:px-8 pt-9 pb-4 flex flex-wrap w-full justify-between items-center">
+            <div className="flex flex-row gap-3">
+              <p className="flex-shrink-0 rounded-full block md:hidden border border-sky-700 p-[3px] shadow-lg">
                 <FontAwesomeIcon icon={faBars} onClick={toggle} />
               </p>
             </div>
-            <div className="">
-              <ul className="flex flex-row gap-4 items-center">
+            <div className="avaterSection flex items-center gap-2 sm:gap-6 text-slate-400">
+              <ul className="flex flex-row gap-4 text-xl items-center">
                 <li>
-                  <span className="h-9 w-9 cursor-pointer text-gray-600">
+                  <span className="h-9 w-9 cursor-pointer gap-2 sm:gap-6 text-slate-400">
                     <FontAwesomeIcon icon={faMessage} />
                   </span>
-                </li>
+                </li> 
                 <li>
-                  <span className="h-9 w-9 cursor-pointer text-gray-600">
+                  <span className="h-9 w-9 cursor-pointer gap-2 sm:gap-6 text-slate-400">
                     <FontAwesomeIcon icon={faBell} />
                   </span>
-                  <span className="m-4">
-                    {nombre}
-                  </span>
+                  <span className="m-4">{nombre}</span> 
                 </li>
                 <li>
                   <span>
