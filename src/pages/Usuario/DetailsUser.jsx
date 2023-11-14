@@ -52,14 +52,14 @@ export const DetailsUser = () => {
       emailPers,
       nombRol
     );
-    toast.success('Usuario registrado')
+    
     //show_alerta('Usuario Registrado', 'success');
     // if (user.message) {
     //   console.log("error en grabado")
     //   return;
     // }
     toast.success('Usuario registrado')
-    //navigate(`/Usuario/User`);
+    navigate(`/Usuario/User`);
     
   }
 
