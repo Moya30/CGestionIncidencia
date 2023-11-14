@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 async function AddUser (nombUsua,passUsua,nombPers,appaPers,apmaPers,dniPers,telfPers,emailPers,nombRol) {
     try {
@@ -16,8 +17,9 @@ async function AddUser (nombUsua,passUsua,nombPers,appaPers,apmaPers,dniPers,tel
                     nombRol,
                 }
         )
-        
+        toast.success('Usuario registrado');
         return {user:result.data};
+        
         
     } catch (error) {
 

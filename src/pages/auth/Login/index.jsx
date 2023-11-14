@@ -2,6 +2,7 @@ import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast, { Toaster }  from 'react-hot-toast';
 
 function LoginIndex() {
   const navigate = useNavigate();
@@ -9,7 +10,9 @@ function LoginIndex() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  
 
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,23 +28,25 @@ function LoginIndex() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("todo el arreglo",data.usuario);
         const dat = data.usuario.idUsua;
         const rol = data.usuario.persona.rol.nombRol
-        console.log("rol", rol);
-        console.log("solo el nombre: ",dat);
+       
         // Aquí puedes manejar la respuesta del servidor.
         if (data.usuario) {
+          
           sessionStorage.setItem('rol', rol);
           localStorage.setItem('nombre', email);
           localStorage.setItem('idUsua', dat);
           console.log("token: " + dat);
           navigate("/Dashboard")
+          toast.success('Datos correctos, Bienvenido');
         } else {
+          //toast.error('Verifica los datos y vuelve a intentar');
           navigate("/")
         }
       })
       .catch(error => {
+         toast.error('Verifica los datos y vuelve a intentar',error);
         // Aquí puedes manejar errores en la solicitud API.
       });
   };
@@ -49,6 +54,8 @@ function LoginIndex() {
     "https://i.imgur.com/9Zd2IEx.png";
   return (
     <>
+       <Toaster position="bottom-right"
+  reverseOrder={true} /> 
       <div className="flex min-h-screen">
         <div className="flex w-full flex-col md:flex-row">
           {/* Image */}

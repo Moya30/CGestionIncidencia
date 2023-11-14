@@ -10,6 +10,8 @@ import axios from "axios";
 import { Spinner } from "@material-tailwind/react";
 import Title from "../indicencias/components/Title";
 import { ButtonAdd } from "../../components/Other/ButtonAdd";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 function User() {
   const [posts, setPosts] = useState([]);
@@ -18,6 +20,8 @@ function User() {
   const navigate = useNavigate();
   const [sidebarToggle] = useOutletContext();
   const [loading, setIsloading] = useState(true);
+
+
 
   useEffect(() => {
     getUsuario();
