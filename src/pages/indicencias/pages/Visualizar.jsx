@@ -41,7 +41,7 @@ function Visualizar() {
 
         <div className="mainCard">
           {/* BOTON REGRESAR */}
-          <Goback  />
+          <Goback />
 
           {/* TITULO */}
           <Title text={"Visualizar incidencia"}></Title>
@@ -126,24 +126,6 @@ function Visualizar() {
                         htmlFor="largeInput"
                         className="text-base text-gray-600"
                       >
-                        Asunto:
-                      </label>
-                      <input
-                        id="largeInput"
-                        type="text"
-                        name="largeInput"
-                        // onChange={(e) => setEmail(e.target.value)}
-                        className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.nombInci}
-                      />
-                    </div>
-
-                    {/* Usuario */}
-                    <div className="mt-6">
-                      <label
-                        htmlFor="largeInput"
-                        className="text-base text-gray-600"
-                      >
                         Usuario:
                       </label>
                       <input
@@ -156,7 +138,7 @@ function Visualizar() {
                       />
                     </div>
 
-                    {/* Tipo de seguimiento */}
+                    {/* Usuario */}
                     <div className="mt-6">
                       <label
                         htmlFor="largeInput"
@@ -173,6 +155,24 @@ function Visualizar() {
                         value={detalis.idInci}
                       />
                     </div>
+
+                    {/* Tipo de seguimiento */}
+                    <div className="mt-6">
+                      <label
+                        htmlFor="largeInput"
+                        className="text-base text-gray-600"
+                      >
+                        Asunto:
+                      </label>
+                      <input
+                        id="largeInput"
+                        type="text"
+                        name="largeInput"
+                        // onChange={(e) => setEmail(e.target.value)}
+                        className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
+                        value={detalis.nombInci}
+                      />
+                    </div>
                   </div>
                   {/* Solución al caso:  */}
                   <div className="mt-6">
@@ -180,7 +180,7 @@ function Visualizar() {
                       htmlFor="largeInput"
                       className="text-base text-gray-600"
                     >
-                      Solución al caso:
+                      Descripción del caso:
                     </label>
                     <textarea
                       id="message"

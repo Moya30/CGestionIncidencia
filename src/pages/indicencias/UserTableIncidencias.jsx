@@ -48,8 +48,10 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
           data.length > 0 &&
           data.map((row, index) => (
 
-            <tr key={row.idInci}>
-              <TableCell dataLabel="Name" showLabel={true}>
+            <tr key={row.idInci}
+            className="bg-white border md:border-b block md:table-row rounded-md shadow-md md:rounded-none md:shadow-none mb-5"
+            >
+              <TableCell dataLabel="ID" showLabel={true}>
                 <span className="font-medium text-sm text-gray-900">
                   {row.idInci}
                 </span>
@@ -59,18 +61,18 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
                   {row.salon.area.nombArea}
                 </p>
               </TableCell>
-              <TableCell dataLabel="SALON" showLabel={true}>
+              <TableCell dataLabel="INCIDENCIA" showLabel={true}>
                 <p
                   className="font-normal text-sm text-gray-500">
                   {row.tipoIncidencia.nombTipoInci}
                 </p>
               </TableCell>
-              <TableCell dataLabel="ASUNTO" showLabel={true}>
+              <TableCell dataLabel="PRIORIDAD" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
                   {row.tipoIncidencia.prioridad.nombPrio}
                 </p>
               </TableCell>
-              <TableCell dataLabel="ASUNTO" showLabel={true}>
+              <TableCell dataLabel="SEGUIMIENTO" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
                   {row.tipoSeguimiento.nombTipoSegui}
                 </p>

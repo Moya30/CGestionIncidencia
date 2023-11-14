@@ -34,16 +34,16 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
                 {row.idUsua}
               </span>
             </TableCell>
-            <TableCell dataLabel="Email" showLabel={true}>
+            <TableCell dataLabel="Nombre" showLabel={true}>
               <p className="font-normal text-sm text-gray-500">{row.persona.nombPers + " " + row.persona.appaPers + " " + row.persona.apmaPers}</p>
             </TableCell>
-            <TableCell showLabel={true}>
+            <TableCell dataLabel="Usuario"  showLabel={true}>
               <p className="font-normal text-sm text-gray-500">{row.nombUsua}</p>
             </TableCell>
-            <TableCell showLabel={true}>
+            <TableCell dataLabel="Rol"  showLabel={true}>
               <p className="font-normal text-sm text-gray-500">{row.persona.rol.nombRol}</p>
             </TableCell>
-            <TableCell dataLabel="Email" showLabel={true}>
+            <TableCell dataLabel="Telefono" showLabel={true}>
               <p className="font-normal text-sm text-gray-500">{row.persona.telfPers}</p>
             </TableCell>
             <TableCell dataLabel="Email" showLabel={true}>

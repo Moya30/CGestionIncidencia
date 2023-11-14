@@ -7,11 +7,8 @@ import { useEffect, useState } from "react";
 
 function ViewUser() {
   const [sidebarToggle] = useOutletContext();
-
   const [detalis, setDetalis] = useState(null);
-
   const query = new URLSearchParams(window.location.search);
-
   const userID = query.get("userID");
 
   const fetchData = () => {
@@ -19,7 +16,7 @@ function ViewUser() {
       .get(`https://incidencias-fiisi.up.railway.app/api/usuario/${userID}`)
       .then((response) => {
         const apiData = response.data;
-
+        console.log("eeorr", apiData);
         setDetalis(apiData);
       })
       .catch((error) => {
@@ -55,15 +52,16 @@ function ViewUser() {
                         htmlFor="largeInput"
                         className="text-base text-gray-600"
                       >
-                        Identificador del Usuario:
+                        Id User:
                       </label>
                       <input
                         id="largeInput"
                         type="text"
                         name="largeInput"
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.idUsua}
+                        value={detalis.usuario.idUsua}
                       />
+                      
                     </div>
 
                     <div className="sm:col-span-2">
@@ -78,7 +76,7 @@ function ViewUser() {
                         type="text"
                         name="largeInput"
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.nombUsua}
+                        value={detalis.usuario.nombUsua}
                       />
                     </div>
 
@@ -95,11 +93,11 @@ function ViewUser() {
                         name="largeInput"
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
                         value={
-                          detalis.persona.nombPers +
+                          detalis.usuario.persona.nombPers +
                           " " +
-                          detalis.persona.appaPers +
+                          detalis.usuario.persona.appaPers +
                           " " +
-                          detalis.persona.apmaPers
+                          detalis.usuario.persona.apmaPers
                         }
                       />
                     </div>
@@ -119,7 +117,7 @@ function ViewUser() {
                         type="text"
                         name="largeInput"
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.persona.dniPers}
+                        value={detalis.usuario.persona.dniPers}
                       />
                     </div>
 
@@ -137,7 +135,7 @@ function ViewUser() {
                         name="largeInput"
                         // onChange={(e) => setEmail(e.target.value)}
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.persona.telfPers}
+                        value={detalis.usuario.persona.telfPers}
                       />
                     </div>
 
@@ -155,7 +153,7 @@ function ViewUser() {
                         name="largeInput"
                         // onChange={(e) => setEmail(e.target.value)}
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.persona.emailPers}
+                        value={detalis.usuario.persona.emailPers}
                       />
                     </div>
 
@@ -174,51 +172,13 @@ function ViewUser() {
                         name="largeInput"
                         // onChange={(e) => setEmail(e.target.value)}
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.persona.roles[0].nombRol}
+                        value={detalis.usuario.persona.rol.nombRol}
                       />
                     </div>
                   </div>
-
-                  {/* <div className="mt-6">
-                    <label
-                      htmlFor="largeInput"
-                      className="text-base text-gray-600"
-                    >
-                      Solución al caso:
-                    </label>
-                    <textarea
-                      id="message"
-                      detaliss="4"
-                      className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                      value={"detalis.descInci"}
-                    ></textarea>
-                  </div> */}
                 </form>
               </>
             )}
-
-            {/*<div className="mt-6 flex flex-detalis justify-center gap-4 content-center">
-            <button
-              className="bg-cyan-900 text-gray-100 px-20 py-2 rounded-full shadow-lg text-base"
-              onClick={() => navigate("/incidencias")}
-            >
-              Guardar
-            </button>
-
-            <button className="text-cyan-900 border border-cyan-900 px-20 py-2 rounded-full shadow-lg text-base">
-              Cancelar
-            </button>
-
-            <button className="text-emerald-600 border border-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
-              Secondary Button
-            </button>
-            <button className="bg-emerald-600 border-emerald-600 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm flex gap-2 items-center">
-              <div>
-                <FontAwesomeIcon icon={faFloppyDisk} />
-              </div>
-              <span>Primary Icon Button</span>
-            </button> 
-          </div>*/}
           </div>
         </div>
       </main>
