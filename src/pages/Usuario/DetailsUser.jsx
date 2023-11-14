@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { show_alerta } from '../../components/Alerta/Alertas';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faFeather, faFileSignature, faIndent, faLock, faPhone, faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import toast, { Toaster } from 'react-hot-toast';
 
 export const DetailsUser = () => {
 
@@ -51,23 +52,28 @@ export const DetailsUser = () => {
       emailPers,
       nombRol
     );
-    show_alerta('Usuario Registrado', 'success');
-    if (user.message) {
-      console.log("error en grabado")
-      return;
-    }
-    navigate(`/Usuario/User`);
+    toast.success('Usuario registrado')
+    //show_alerta('Usuario Registrado', 'success');
+    // if (user.message) {
+    //   console.log("error en grabado")
+    //   return;
+    // }
+    toast.success('Usuario registrado')
+    //navigate(`/Usuario/User`);
+    
   }
 
   return (
     <>
+        <Toaster position="bottom-right"
+                reverseOrder={true} />
       <main className="h-full">
         <Navbar toggle={sidebarToggle} />
 
         {/* Main Content */}
         <div className="mainCard">
           <div className="border w-full border-gray-200 bg-white py-4 px-6 rounded-md">
-
+         
             <div className="m-2 mb-5">
               <h2 className="font-semibold text-lg"> Registrar Usuario </h2>
             </div>
