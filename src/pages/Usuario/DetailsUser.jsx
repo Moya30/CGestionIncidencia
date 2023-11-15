@@ -58,9 +58,9 @@ export const DetailsUser = () => {
     //   console.log("error en grabado")
     //   return;
     // }
-    toast.success('Usuario registrado')
-    navigate(`/Usuario/User`);
     
+    navigate(`/Usuario/User`);
+    toast.success('Usuario registrado')
   }
 
   return (
@@ -256,7 +256,7 @@ export const DetailsUser = () => {
                   <button
                     onClick={() =>
                       navigate("/Usuario/User")}
-                    className="bg-slate-500 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
+                    className="bg-slate-500 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm ">
                     Cancelar
                   </button>
 

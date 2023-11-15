@@ -19,7 +19,7 @@ async function AddUser (nombUsua,passUsua,nombPers,appaPers,apmaPers,dniPers,tel
         )
         toast.success('Usuario registrado');
         return {user:result.data};
-        
+    
         
     } catch (error) {
 
