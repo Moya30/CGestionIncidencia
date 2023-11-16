@@ -1,6 +1,6 @@
 import { faPaperclip, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import initMenus from "../../data/menus.js";
 import "./sidebar.css";
 import SidebarLogo from "./SidebarLogo.jsx";
@@ -16,6 +16,35 @@ function Sidebar({ ...props }) {
   const [menus, setMenus] = useState(initMenus);
   const [scButton, setScButton] = useState(false);
   const search = useRef("");
+  const [fot, setFot] = useState([]);
+  const [id, setId] = useState(0);
+
+
+  useEffect(() => {
+
+    const ids = localStorage.getItem('idUsua');
+    setId(ids);
+    console.log(ids);
+    getFoto();
+  }, [id])
+
+
+
+  const getFoto = () => {
+    fetch(`https://incidencias-fiisi.up.railway.app/api/usuario/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+
+        const foto = data.img
+        console.log("sa", foto)
+        setFot(foto);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+
 
   const handleChange = (e) => {
     if (e.target.value) {
@@ -54,7 +83,7 @@ function Sidebar({ ...props }) {
           {/* Logo */}
           {/* <SidebarLogo toggle={props.toggle} icon={faPaperclip} text="Sistema de incidencias" /> */}
 
-          <Sidebaruser  user={{ name: nombre }} nomb={nom}></Sidebaruser>
+          <Sidebaruser user={{ name: nombre }} nomb={nom} fot={fot}></Sidebaruser>
 
 
           {/* Search Menu */}

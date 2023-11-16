@@ -19,21 +19,6 @@ import { AddIncidencia } from "./pages/indicencias/AddIncidencia";
 
 function AppRouter() {
 
-    const [rol, setRol] = useState([])
-
-    const obtenerRol = ()=>{
-        fetch('https://incidencias-fiisi.up.railway.app/api/rol')
-          .then(response => response.json())
-          .then(data => {
-            // Aquí puedes obtener el rol del usuario desde la respuesta de la API.
-            const userRole = data.role;
-            setRol(userRole);
-            // Luego, puedes almacenar el rol en el estado de tu aplicación o en un contexto global.
-          })
-          .catch(error => {
-            // Aquí puedes manejar errores en la solicitud API.
-          });
-    }
 
     return (
         <Routes>

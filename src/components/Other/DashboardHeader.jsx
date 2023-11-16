@@ -15,7 +15,7 @@ function DashboardHeader({ user, avatar, toggle , nomb }) {
         <p className="flex-shrink-0 rounded-full block md:hidden border border-sky-700 p-[3px] shadow-lg">
           <img
             className="rounded-full md:h-14 md:w-14 h-10 w-10 border cursor-pointer"
-            src ={avatar}
+            src ={`data:image/png;base64,${avatar}`}
             alt="Converted"
           />
         </p>
@@ -42,7 +42,7 @@ function DashboardHeader({ user, avatar, toggle , nomb }) {
         <p className="rounded-full hidden md:block border border-emerald-400 p-[3px] shadow-lg">
           <img
             className="rounded-full md:h-14 md:w-14 h-10 w-10 border cursor-pointer"
-            src={avatar}
+            src={`data:image/png;base64,${avatar}`}
             alt="Avatar"
           />
         </p>

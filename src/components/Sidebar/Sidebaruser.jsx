@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Sidebaruser = ({user,nomb}) => {
+export const Sidebaruser = ({user,nomb,fot}) => {
   return (
     <>
       <div className="w max-h-40 m-2 mt-3  border-gray-200 rounded-lg bg-sky-950">
@@ -8,7 +8,7 @@ export const Sidebaruser = ({user,nomb}) => {
           <div className="flex-none w-14 h-14 m-4">
             <img
               className=" w-14 h-14 rounded-full shadow-md"
-              src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              src={`data:image/png;base64,${fot}`}
               alt="Bonnie image"
             />
           </div>

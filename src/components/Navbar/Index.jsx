@@ -1,9 +1,34 @@
 import { faBars, faBell, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function Index({ toggle }) {
   const nombre = sessionStorage.getItem("rol");
+  const [id, setId] = useState(0);
+  const [fot, setFot] = useState([]);
+
+  useEffect(() => {
+
+    const ids = localStorage.getItem('idUsua');
+    setId(ids);
+    console.log(ids);
+    getFoto();
+}, [id])
+
+const getFoto = () => {
+  fetch(`https://incidencias-fiisi.up.railway.app/api/usuario/${id}`)
+    .then((response) => response.json())
+    .then((data) => {
+      
+      const foto = data.img
+      console.log("sa", foto)
+      setFot(data.img);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
   const avatar =
     "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80";
 
@@ -34,7 +59,7 @@ function Index({ toggle }) {
                   <span>
                     <img
                       className="rounded-full h-9 w-9 border cursor-pointer"
-                      src={avatar}
+                      src={`data:image/png;base64,${fot}`}
                       alt="Avatar"
                     />
                   </span>

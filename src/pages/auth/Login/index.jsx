@@ -10,7 +10,7 @@ function LoginIndex() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [ufoot, setUfoot] = useState([0]);
+  const [ufoot, setUfoot] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,10 +40,17 @@ function LoginIndex() {
           //localStorage.setItem('foto', foto);
           setUfoot(foto);
           console.log("token: " + dat);
-          navigate("/Dashboard")
+          
           toast.success('Datos correctos, Bienvenido');
+          const esperarYMostrarMensaje = async () => {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            navigate("/Dashboard")
+          };
+    
+          esperarYMostrarMensaje();
         } else {
           //toast.error('Verifica los datos y vuelve a intentar');
+          
           navigate("/")
         }
       })
@@ -52,11 +59,11 @@ function LoginIndex() {
         // Aquí puedes manejar errores en la solicitud API.
       });
   };
-  const LoginImage =
-    "https://i.imgur.com/9Zd2IEx.png";
+  const LoginImage = 'https://i.imgur.com/9Zd2IEx.png'
+
   return (
     <>
-       <Toaster position="bottom-right"
+       <Toaster position="top-right"
   reverseOrder={true} /> 
       <div className="flex min-h-screen">
         <div className="flex w-full flex-col md:flex-row">
@@ -64,7 +71,7 @@ function LoginIndex() {
           <div className="md:bg-sky-900 md:min-h-screen flex flex-wrap md:w-1/2">
             <div className="items-center text-center flex flex-col relative justify-center mx-auto">
               <img
-                src={`data:image/png;base64,${ufoot}`}
+                src={LoginImage}
                 alt="Logo Login"
                 className="md:w-72 w-48 mx-auto"
               />

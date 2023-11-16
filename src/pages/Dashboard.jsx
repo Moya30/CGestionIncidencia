@@ -9,9 +9,20 @@ import BarsChart from "../components/Graficos/BarsChart.jsx";
 
 function Dashboard() {
 
+
+
   const [data, setData] = useState([])
-  const [fot, setFot] = useState("");
-  const [id, setId] = useState("");
+  const [fot, setFot] = useState([]);
+  const [id, setId] = useState(0);
+  
+
+  useEffect(() => {
+
+    const ids = localStorage.getItem('idUsua');
+    setId(ids);
+    console.log(ids);
+    getFoto();
+}, [id])
 
   const avatar =
     "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80";
@@ -69,26 +80,19 @@ function Dashboard() {
 
   useEffect(() => {
     getIncidencias();
-
   }, []);
-  let ids;
-  useEffect(() => {
+  
 
-    ids = localStorage.getItem('idUsua');
-    setId(ids);
-
-  }, []);
-  useEffect(() => {
-    getFoto();
-
-  }, []);
+  
 
 
   const getFoto = () => {
-    fetch(`https://incidencias-fiisi.up.railway.app/api/usuario/${1}`)
+    fetch(`https://incidencias-fiisi.up.railway.app/api/usuario/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        
+        const foto = data.img
+        console.log("sa", foto)
         setFot(data.img);
       })
       .catch((err) => {
@@ -121,16 +125,10 @@ function Dashboard() {
         {/* Welcome Header */}
         <DashboardHeader
           toggle={sidebarToggle}
-          avatar={avatar}
+          avatar={fot}
           user={{ name: nombre }}
           nomb={nom}
         />
-
-
-
-
-
-
 
         <div className="px-2 mx-auto mainCard">
           <h1 className="text-slate-500 pb-3 text-base md:text-lg">
