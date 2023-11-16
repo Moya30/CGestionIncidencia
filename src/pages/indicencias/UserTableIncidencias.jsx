@@ -89,7 +89,7 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
               </TableCell>
 
               <TableCell>
-
+ 
 
                 <Link
                   to={`/incidencias/visualizar?incidenciaID=${row.idInci}`}

@@ -38,7 +38,7 @@ function HeaderSort({ tkey, label, field, direction, handleSort }) {
 function Header({ data, handleSort, direction, field } = {}) {
   return (
     <>
-      <thead className="hidden bg-cyan-600 md:table-header-group text-white">
+      <thead className="hidden bg-sky-900 md:table-header-group text-white">
         <tr className="block md:table-row">
           {data.map((row) => (
             <th

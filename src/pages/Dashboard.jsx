@@ -5,10 +5,13 @@ import DashboardHeader from "../components/Other/DashboardHeader.jsx";
 import ScrolledCard from "../components/Widget/ScrolledCard.jsx";
 import { useOutletContext } from "react-router-dom";
 import LinesChart from "../components/Graficos/LinesChart.jsx";
+import BarsChart from "../components/Graficos/BarsChart.jsx";
 
 function Dashboard() {
 
   const [data, setData] = useState([])
+  const [fot, setFot] = useState("");
+  const [id, setId] = useState("");
 
   const avatar =
     "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80";
@@ -66,7 +69,34 @@ function Dashboard() {
 
   useEffect(() => {
     getIncidencias();
+
   }, []);
+  let ids;
+  useEffect(() => {
+
+    ids = localStorage.getItem('idUsua');
+    setId(ids);
+
+  }, []);
+  useEffect(() => {
+    getFoto();
+
+  }, []);
+
+
+  const getFoto = () => {
+    fetch(`https://incidencias-fiisi.up.railway.app/api/usuario/${1}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setFot(data.img);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+
 
   const getIncidencias = () => {
     fetch('https://incidencias-fiisi.up.railway.app/api/incidencia')
@@ -96,25 +126,11 @@ function Dashboard() {
           nomb={nom}
         />
 
-        {/* Estdisticas */}
-        {/* <div className="px-2 mx-auto mainCard">
-          <div className="w-full overflow-hidden text-slate-700 md:grid gap-4 grid md:grid-cols-6">
-            <StatisticWidget className="col-span-4 col-start-1 bg-white" />
-            <AchievementWidget />
-          </div>
-        </div> 
 
-        {/* OS Kredit */}
 
-        <div className="px-2 mx-auto mainCard">
 
-          <div >
-          <LinesChart />
-        </div>
 
-          <div className="lg:w-full w-[1024px] overflow-hidden flex flex-row justify-between text-slate-700 gap-2 lg:max-h-screen overflow-x-auto whitespace-nowrap"></div>
-        </div>
-       
+
 
         <div className="px-2 mx-auto mainCard">
           <h1 className="text-slate-500 pb-3 text-base md:text-lg">
@@ -122,12 +138,13 @@ function Dashboard() {
           </h1>
 
           <div className="flex flex-row gap-x-4 overflow-hidden overflow-x-auto justify-between no-scrollbar">
-            {data?.map((data, index) => (
-              <ScrolledCard key={data.idInci} data={data} />
+            {dataOS?.map((data, index) => (
+              <ScrolledCard key={index} data={data} />
             ))}
           </div>
 
           <div className="lg:w-full w-[1024px] overflow-hidden flex flex-row justify-between text-slate-700 gap-2 lg:max-h-screen overflow-x-auto whitespace-nowrap"></div>
+
         </div>
         <div className="px-2 mx-auto mainCard">
           <h1 className="text-slate-500 pb-3 text-base md:text-lg">
@@ -141,6 +158,27 @@ function Dashboard() {
           </div>
 
           <div className="lg:w-full w-[1024px] overflow-hidden flex flex-row justify-between text-slate-700 gap-2 lg:max-h-screen overflow-x-auto whitespace-nowrap"></div>
+
+        </div>
+
+        <div className=" mainCard ">
+
+          <h1 className="text-slate-500 text-base md:text-lg ">
+            Gráficos
+          </h1>
+
+          {/* <div className="lg:w-full w-[1024px] overflow-hidden flex flex-row justify-between text-slate-700 gap-2 lg:max-h-screen overflow-x-auto whitespace-nowrap"></div> */}
+        </div>
+        <div className=" grid grid-cols-2 gap-4 p-">
+
+
+          <div className="relative">
+            <LinesChart />
+          </div >
+          <div className="relative">
+            <BarsChart />
+          </div >
+
         </div>
       </main>
     </>

@@ -266,7 +266,7 @@ export const AddIncidencia = () => {
 
                             <div className="mt-1 flex flex-row gap-2">
                                 <div className="mt-5 flex flex-row gap-4">
-                                    <button className="bg-cyan-600 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
+                                    <button className="bg-sky-900 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
                                         Guardar
                                     </button>
                                 </div>

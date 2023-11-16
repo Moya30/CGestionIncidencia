@@ -121,7 +121,7 @@ function User() {
 
             <ButtonAdd
               link={"/Usuario/DetailsUser"}
-              name={"Nuevo usuario"}
+              name={"Registrar usuario"}
             ></ButtonAdd>
 
             <UserTable

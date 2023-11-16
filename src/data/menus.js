@@ -4,14 +4,18 @@ import {
   faTable,
   faLock,
   //faNoteSticky,
-  faNotdef
+  faNotdef,
+  faUser,
+  faTicket,
+  faFile,
+  faHouse
 } from "@fortawesome/free-solid-svg-icons";
 
 const initMenu = [
   {
     label: "Dashboard",
     path: "/dashboard",
-    icon: faTachometer,
+    icon: faHouse,
   },
   {
     label: 'Maestro'
@@ -19,7 +23,7 @@ const initMenu = [
   {
     label: "Usuario",
     path: "/Usuario/User",
-    icon: faPage4,
+    icon: faUser,
   },
  
   
@@ -29,7 +33,7 @@ const initMenu = [
   {
     label: "Incidencias",
     path: "/incidencias",
-    icon: faWindows,
+    icon: faTicket,
   },
 
   {
@@ -38,7 +42,7 @@ const initMenu = [
   {
     label: "Reporte de incidencias",
     path: "/Reportes/ReporteUser",
-    icon: faLock,
+    icon: faFile,
   },
 
 

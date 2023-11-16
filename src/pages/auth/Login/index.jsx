@@ -10,9 +10,7 @@ function LoginIndex() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  
-
- 
+  const [ufoot, setUfoot] = useState([0]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +28,8 @@ function LoginIndex() {
       .then(data => {
         const dat = data.usuario.idUsua;
         const rol = data.usuario.persona.rol.nombRol
+        const foto = data.img
+        console.log(foto);
        
         // Aquí puedes manejar la respuesta del servidor.
         if (data.usuario) {
@@ -37,6 +37,8 @@ function LoginIndex() {
           sessionStorage.setItem('rol', rol);
           localStorage.setItem('nombre', email);
           localStorage.setItem('idUsua', dat);
+          //localStorage.setItem('foto', foto);
+          setUfoot(foto);
           console.log("token: " + dat);
           navigate("/Dashboard")
           toast.success('Datos correctos, Bienvenido');
@@ -46,7 +48,7 @@ function LoginIndex() {
         }
       })
       .catch(error => {
-         toast.error('Verifica los datos y vuelve a intentar',error);
+         toast.error('Datos incorrectos, Verifica los datos y vuelve a intentar',error);
         // Aquí puedes manejar errores en la solicitud API.
       });
   };
@@ -59,10 +61,10 @@ function LoginIndex() {
       <div className="flex min-h-screen">
         <div className="flex w-full flex-col md:flex-row">
           {/* Image */}
-          <div className="md:bg-cyan-600 md:min-h-screen flex flex-wrap md:w-1/2">
+          <div className="md:bg-sky-900 md:min-h-screen flex flex-wrap md:w-1/2">
             <div className="items-center text-center flex flex-col relative justify-center mx-auto">
               <img
-                src={LoginImage}
+                src={`data:image/png;base64,${ufoot}`}
                 alt="Logo Login"
                 className="md:w-72 w-48 mx-auto"
               />
@@ -151,7 +153,7 @@ function LoginIndex() {
                     <button
                       disabled={loading}
                       type="submit"
-                      className="flex items-center justify-center focus:outline-none text-white text-sm bg-cyan-600 hover:bg-emerald-700 rounded-lg md:rounded md:py-2 py-3 w-full transition duration-150 ease-in"
+                      className="flex items-center justify-center focus:outline-none text-white text-sm bg-sky-900  rounded-lg md:rounded md:py-2 py-3 w-full transition duration-150 ease-in"
                     // onClick={() => logn()}
                     >
                       <span className="mr-2 md:uppercase">

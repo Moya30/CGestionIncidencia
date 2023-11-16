@@ -52,28 +52,37 @@ export const DetailsUser = () => {
       emailPers,
       nombRol
     );
-    
-    //show_alerta('Usuario Registrado', 'success');
-    // if (user.message) {
-    //   console.log("error en grabado")
-    //   return;
-    // }
-    
-    navigate(`/Usuario/User`);
-    toast.success('Usuario registrado')
+
+
+
+    if (user.status === 401) {
+      toast.error('Error')
+      console.log("sas|")
+
+    } else {
+      toast.success('Usuario registrado')
+
+      const esperarYMostrarMensaje = async () => {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        navigate(`/Usuario/User`);
+      };
+
+      esperarYMostrarMensaje();
+
+    }
   }
 
   return (
     <>
-        <Toaster position="bottom-right"
-                reverseOrder={true} />
+      <Toaster position="bottom-right"
+        reverseOrder={true} />
       <main className="h-full">
         <Navbar toggle={sidebarToggle} />
 
         {/* Main Content */}
         <div className="mainCard">
           <div className="border w-full border-gray-200 bg-white py-4 px-6 rounded-md">
-         
+
             <div className="m-2 mb-5">
               <h2 className="font-semibold text-lg"> Registrar Usuario </h2>
             </div>
@@ -246,8 +255,7 @@ export const DetailsUser = () => {
               <div className="mt-1 flex flex-row gap-2">
                 <div className="mt-5 flex flex-row gap-4">
                   <button
-                    className="bg-cyan-600 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm"
-
+                    className="bg-sky-900 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm"
                   >
                     Guardar
                   </button>

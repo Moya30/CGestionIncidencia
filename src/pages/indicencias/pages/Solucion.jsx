@@ -60,12 +60,12 @@ function Solucion() {
       .then(function (response) {
         if (response.data === "YA EXISTE") {
           show_alerta("Ya existe una solución, no seas gil :v ", "error");
-          
+
         } else {
           show_alerta("Solucionado", "success");
           navigate(`/incidencias`);
         }
-        
+
       })
   };
 
@@ -178,11 +178,21 @@ function Solucion() {
                       placeholder="Ingrese la solución de la incidencia"
                     ></textarea>
                   </div>
+                  <div className="mt-1 flex flex-row gap-2">
+                    <div className="mt-5 flex flex-row gap-4">
+                      <button className="bg-sky-900 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
+                        Guardar
+                      </button>
+                    </div>
+                    <div className="mt-5 flex flex-row gap-4">
+                      <button
+                        onClick={() =>
+                          navigate("/incidencias")}
+                        className="bg-slate-500 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm ">
+                        Cancelar
+                      </button>
 
-                  <div className="mt-6 flex flex-row justify-center gap-4 content-center">
-                    <button className="bg-cyan-900 text-gray-100 px-20 py-2 rounded-full shadow-lg text-base">
-                      Guardar
-                    </button>
+                    </div>
                   </div>
                 </form>
               </>

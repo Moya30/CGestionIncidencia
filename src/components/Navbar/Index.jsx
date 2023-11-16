@@ -28,7 +28,7 @@ function Index({ toggle }) {
                   <span className="h-9 w-9 cursor-pointer gap-2 sm:gap-6 text-slate-400">
                     <FontAwesomeIcon icon={faBell} />
                   </span>
-                  <span className="m-4">{nombre}</span> 
+               
                 </li>
                 <li>
                   <span>
