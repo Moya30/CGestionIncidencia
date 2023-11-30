@@ -25,12 +25,17 @@ function Incidencias() {
 
   console.log("rol en incidencias", nombre);
   const fetchData = () => {
-    return axios
-      .get("https://incidencias-fiisi.up.railway.app/api/incidencia")
-      .then((response) => {
-        setUser(response.data);
-        setIsloading(false);
-      });
+    fetch("https://incidencias-fiisi.up.railway.app/api/incidencia/a?search=true")
+    .then((response) => response.json())
+    .then((data) => {
+      
+      setUser(data);
+      //console.log(data.incidencia);
+      setIsloading(false);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
   };
   useEffect(() => {
     fetchData();
@@ -54,7 +59,7 @@ function Incidencias() {
       label: "PRIORIDAD",
     },
     {
-      key: "seguimiento",
+      key: "fecha",
       label: "SEGUIMIENTO",
     },
     {
@@ -128,7 +133,7 @@ function Incidencias() {
           <div className="border w-full border-gray-200 bg-white py-4 px-6 rounded-md">
             <ButtonAdd
               link={"/incidencias/AddIncidencia"}
-              name={"Registrar Incidencia"}
+              name={"Nuevo incidencia"}
             ></ButtonAdd>
 
             <UserTableIncidencias

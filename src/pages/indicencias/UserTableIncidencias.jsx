@@ -48,33 +48,33 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
           data.length > 0 &&
           data.map((row, index) => (
 
-            <tr key={row.idInci}
+            <tr key={row.incidencia.idInci}
             className="bg-white border md:border-b block md:table-row rounded-md shadow-md md:rounded-none md:shadow-none mb-5"
             >
               <TableCell dataLabel="ID" showLabel={true}>
                 <span className="font-medium text-sm text-gray-900">
-                  {row.idInci}
+                  {row.incidencia.idInci}
                 </span>
               </TableCell>
               <TableCell dataLabel="AREA" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
-                  {row.salon.area.nombArea}
+                  {row.incidencia.salon.area.nombArea}
                 </p>
               </TableCell>
               <TableCell dataLabel="INCIDENCIA" showLabel={true}>
                 <p
                   className="font-normal text-sm text-gray-500">
-                  {row.tipoIncidencia.nombTipoInci}
+                  {row.incidencia.tipoIncidencia.nombTipoInci}
                 </p>
               </TableCell>
               <TableCell dataLabel="PRIORIDAD" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
-                  {row.tipoIncidencia.prioridad.nombPrio}
+                  {row.incidencia.tipoIncidencia.prioridad.nombPrio}
                 </p>
               </TableCell>
               <TableCell dataLabel="SEGUIMIENTO" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
-                  {row.tipoSeguimiento.nombTipoSegui}
+                  {row.incidencia.tipoSeguimiento.nombTipoSegui}
                 </p>
               </TableCell>
               <TableCell dataLabel="FECHA" showLabel={true}>
@@ -84,7 +84,7 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
               </TableCell>
               <TableCell dataLabel="USUARIO" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
-                  {row.usuario.nombUsua}
+                  {row.incidencia.usuario.nombUsua}
                 </p>
               </TableCell>
 
@@ -92,29 +92,29 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
  
 
                 <Link
-                  to={`/incidencias/visualizar?incidenciaID=${row.idInci}`}
+                  to={`/incidencias/visualizar?incidenciaID=${row.incidencia.idInci}`}
                   className={`text-gray-500 inline-flex py-2 px-2 rounded  text-sm`}
                 >
-                  {  row.tipoSeguimiento.nombTipoSegui === 'Proceso' ?
+                  {  row.incidencia.tipoSeguimiento.nombTipoSegui === 'Proceso' ?
                     (<FontAwesomeIcon icon={faEye} style={{ color: "#10b2ee", }} />) 
-                    : row.tipoSeguimiento.nombTipoSegui === 'Resuelto' ? (<FontAwesomeIcon icon={faEye} style={{ color: "#10b2ee", }}/>) 
-                    : row.tipoSeguimiento.nombTipoSegui === 'Registrado' ? (<FontAwesomeIcon icon={faEye}/>)
+                    : row.incidencia.tipoSeguimiento.nombTipoSegui === 'Resuelto' ? (<FontAwesomeIcon icon={faEye} style={{ color: "#10b2ee", }}/>) 
+                    : row.incidencia.tipoSeguimiento.nombTipoSegui === 'Registrado' ? (<FontAwesomeIcon icon={faEye}/>)
                     : (<FontAwesomeIcon icon={faEye} />)
                   }
                   
                 </Link>
 
                 <Link
-                  to={`/incidencias/solucion?incidenciaID=${row.idInci}`}
+                  to={`/incidencias/solucion?incidenciaID=${row.incidencia.idInci}`}
                   className={`text-gray-500 inline-flex py-2 px-2 rounded  text-sm`}
                 >
                   {/* {row.tipoSeguimiento.nombTipoSegui === 'Proceso' ?
                     (<FontAwesomeIcon icon={faLightbulb} style={{ color: "#10b2ee", }} />) : (<FontAwesomeIcon icon={faLightbulb} />)
                   } */}
-                  {  row.tipoSeguimiento.nombTipoSegui === 'Proceso' ?
+                  {  row.incidencia.tipoSeguimiento.nombTipoSegui === 'Proceso' ?
                     (<FontAwesomeIcon icon={faLightbulb} />) 
-                    : row.tipoSeguimiento.nombTipoSegui === 'Resuelto' ? (<FontAwesomeIcon icon={faLightbulb} style={{color: "#f4cc06",}}/>) 
-                    : row.tipoSeguimiento.nombTipoSegui === 'Registrado' ? (<FontAwesomeIcon icon={faLightbulb}/>)
+                    : row.incidencia.tipoSeguimiento.nombTipoSegui === 'Resuelto' ? (<FontAwesomeIcon icon={faLightbulb} style={{color: "#f4cc06",}}/>) 
+                    : row.incidencia.tipoSeguimiento.nombTipoSegui === 'Registrado' ? (<FontAwesomeIcon icon={faLightbulb}/>)
                     : (<FontAwesomeIcon icon={faLightbulb} />)
                   }
                   
@@ -124,7 +124,7 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
                 <Link
                   onClick={(e) => {
                     e.preventDefault();
-                    handleDelete(row.idInci, row.usuario.nombUsua);
+                    handleDelete(row.incidencia.idInci, row.incidencia.usuario.nombUsua);
                   }}
                   to={"/incidencias"}
                   className={`text-gray-500 inline-flex py-2 px-2 rounded  text-sm`}

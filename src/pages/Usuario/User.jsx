@@ -85,7 +85,6 @@ function User() {
           .delete(`https://incidencias-fiisi.up.railway.app/api/usuario/${id}`)
           .then((response) => {
             var tipo = response.status ? "success" : "error";
-            console.log("tipo", tipo);
             var msj = response.data;
             show_alerta(msj, tipo);
             if (tipo === "success") {

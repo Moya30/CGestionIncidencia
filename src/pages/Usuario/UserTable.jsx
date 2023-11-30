@@ -25,7 +25,7 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
           />)
         }
         {data &&
-          data.map((row) => (
+                 data.map((row) => (
 
             <tr
               key={row.idUsua}
@@ -37,24 +37,24 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
                 </span>
               </TableCell>
               <TableCell dataLabel="Nombre" showLabel={true}>
-                <p className="font-normal text-sm text-gray-500">{row.persona.nombPers + " " + row.persona.appaPers + " " + row.persona.apmaPers}</p>
+                <p className="font-normal text-sm text-gray-500">{row.usuario.persona.nombPers + " " + row.usuario.persona.appaPers + " " + row.usuario.persona.apmaPers}</p>
               </TableCell>
               <TableCell dataLabel="Usuario" showLabel={true}>
-                <p className="font-normal text-sm text-gray-500">{row.nombUsua}</p>
+                <p className="font-normal text-sm text-gray-500">{row.usuario.nombUsua}</p>
               </TableCell>
               <TableCell dataLabel="Rol" showLabel={true}>
-                <p className="font-normal text-sm text-gray-500">{row.persona.rol.nombRol}</p>
+                <p className="font-normal text-sm text-gray-500">{row.usuario.persona.rol.nombRol}</p>
               </TableCell>
               <TableCell dataLabel="Telefono" showLabel={true}>
-                <p className="font-normal text-sm text-gray-500">{row.persona.telfPers}</p>
+                <p className="font-normal text-sm text-gray-500">{row.usuario.persona.telfPers}</p>
               </TableCell>
               <TableCell dataLabel="Email" showLabel={true}>
-                <p className="font-normal text-sm text-gray-500">{row.persona.emailPers}</p>
+                <p className="font-normal text-sm text-gray-500">{row.usuario.persona.emailPers}</p>
               </TableCell>
               <TableCell>
                 <Link
 
-                  to={`/Usuario/ViewUser?userID=${row.idUsua}`}
+                  to={`/Usuario/ViewUser?userID=${row.usuario.idUsua}`}
                   className={`text-gray-500 inline-flex py-2 px-2 rounded  text-sm`}
                 >
                   <FontAwesomeIcon icon={faEye} />
@@ -68,7 +68,7 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
                 <Link
                   onClick={(e) => {
                     e.preventDefault();
-                    handleDelete(row.idUsua, row.nombUsua);
+                    handleDelete(row.usuario.idUsua, row.usuario.nombUsua);
                   }}
                   to={`/auth/master/user/${row.id}/edit`}
                   className={`text-gray-500 inline-flex py-2 px-2 rounded  text-sm`}

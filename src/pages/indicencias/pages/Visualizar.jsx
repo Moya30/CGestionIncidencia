@@ -16,7 +16,7 @@ function Visualizar() {
   const incidenciaID = query.get("incidenciaID");
 
   useEffect(() => {
-    const endPonit = `https://incidencias-fiisi.up.railway.app/api/incidencia/${incidenciaID}`;
+    const endPonit = `https://incidencias-fiisi.up.railway.app/api/incidencia?id=${incidenciaID}`;
 
     console.log("Error", endPonit);
 

@@ -32,7 +32,7 @@ function Solucion() {
 
     axios
       .get(
-        `https://incidencias-fiisi.up.railway.app/api/incidencia/${incidenciaID}`
+        `https://incidencias-fiisi.up.railway.app/api/incidencia?id=${incidenciaID}`
       )
       .then((response) => {
         setSolution(response.data);
