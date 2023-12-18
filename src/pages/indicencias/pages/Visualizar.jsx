@@ -67,7 +67,7 @@ function Visualizar() {
                         type="text"
                         name="largeInput"
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.salon.area.nombArea}
+                        value={detalis.incidencia.salon.area.nombArea}
                       />
                     </div>
 
@@ -83,7 +83,7 @@ function Visualizar() {
                         type="text"
                         name="largeInput"
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.salon.nombSalon}
+                        value={detalis.incidencia.salon.nombSalon}
                       />
                     </div>
 
@@ -99,7 +99,7 @@ function Visualizar() {
                         type="text"
                         name="largeInput"
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.tipoIncidencia.nombTipoInci}
+                        value={detalis.incidencia.tipoIncidencia.nombTipoInci}
                       />
                     </div>
                   </div>
@@ -120,7 +120,7 @@ function Visualizar() {
                         type="text"
                         name="largeInput"
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.fechaInci}
+                        value={detalis.incidencia.fechaInci}
                       />
                     </div>
 
@@ -138,7 +138,7 @@ function Visualizar() {
                         name="largeInput"
                         // onChange={(e) => setEmail(e.target.value)}
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.usuario.nombUsua}
+                        value={detalis.incidencia.usuario.nombUsua}
                       />
                     </div>
 
@@ -156,7 +156,7 @@ function Visualizar() {
                         name="largeInput"
                         // onChange={(e) => setEmail(e.target.value)}
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.idInci}
+                        value={detalis.incidencia.idInci}
                       />
                     </div>
 
@@ -174,7 +174,7 @@ function Visualizar() {
                         name="largeInput"
                         // onChange={(e) => setEmail(e.target.value)}
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.nombInci}
+                        value={detalis.incidencia.nombInci}
                       />
                     </div>
 
@@ -184,7 +184,7 @@ function Visualizar() {
                         htmlFor="largeInput"
                         className="text-base text-gray-600"
                       >
-                        N° Incidencia:
+                        Dias transcurridos:
                       </label>
                       <input
                         id="largeInput"
@@ -192,27 +192,11 @@ function Visualizar() {
                         name="largeInput"
                         // onChange={(e) => setEmail(e.target.value)}
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.idInci}
+                        value={detalis.diasSolucion}
                       />
                     </div>
 
-                    {/* Tipo de seguimiento */}
-                    <div className="mt-6">
-                      <label
-                        htmlFor="largeInput"
-                        className="text-base text-gray-600"
-                      >
-                        Asunto:
-                      </label>
-                      <input
-                        id="largeInput"
-                        type="text"
-                        name="largeInput"
-                        // onChange={(e) => setEmail(e.target.value)}
-                        className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={detalis.nombInci}
-                      />
-                    </div>
+                    
                     {/* ------------------------- */}
 
 
@@ -229,35 +213,14 @@ function Visualizar() {
                       id="message"
                       detaliss="4"
                       className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                      value={detalis.descInci}
+                      value={detalis.incidencia.descInci}
                     ></textarea>
                   </div>
                 </form>
               </>
             )}
 
-            {/*<div className="mt-6 flex flex-detalis justify-center gap-4 content-center">
-            <button
-              className="bg-cyan-900 text-gray-100 px-20 py-2 rounded-full shadow-lg text-base"
-              onClick={() => navigate("/incidencias")}
-            >
-              Guardar
-            </button>
-
-            <button className="text-cyan-900 border border-cyan-900 px-20 py-2 rounded-full shadow-lg text-base">
-              Cancelar
-            </button>
-
-            <button className="text-emerald-600 border border-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
-              Secondary Button
-            </button>
-            <button className="bg-emerald-600 border-emerald-600 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm flex gap-2 items-center">
-              <div>
-                <FontAwesomeIcon icon={faFloppyDisk} />
-              </div>
-              <span>Primary Icon Button</span>
-            </button> 
-          </div>*/}
+            
           </div>
         </div>
       </main>

@@ -68,7 +68,7 @@ function Incidencias() {
     },
     {
       key: "diasSolucion",
-      label: "DIAS TRANSCURRIDOS",
+      label: "DIAS SOLUCIÓN",
     },
     {
       key: "usuario",
