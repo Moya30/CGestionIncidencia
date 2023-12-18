@@ -52,6 +52,8 @@ function Visualizar() {
               <>
                 <form>
                   <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
+
+                    
                     {/* ------------------- */}
                     <div className="sm:col-span-2 sm:col-start-1">
                       <label
@@ -102,6 +104,8 @@ function Visualizar() {
                     </div>
                   </div>
                   {/* ------------------------- */}
+
+
                   <div className="grid gap-4 grid-cols-2">
                     {/* incidencia */}
                     <div className="mt-6">
@@ -173,6 +177,45 @@ function Visualizar() {
                         value={detalis.nombInci}
                       />
                     </div>
+
+                    {/* ------------------------- */}
+                    <div className="mt-6">
+                      <label
+                        htmlFor="largeInput"
+                        className="text-base text-gray-600"
+                      >
+                        N° Incidencia:
+                      </label>
+                      <input
+                        id="largeInput"
+                        type="text"
+                        name="largeInput"
+                        // onChange={(e) => setEmail(e.target.value)}
+                        className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
+                        value={detalis.idInci}
+                      />
+                    </div>
+
+                    {/* Tipo de seguimiento */}
+                    <div className="mt-6">
+                      <label
+                        htmlFor="largeInput"
+                        className="text-base text-gray-600"
+                      >
+                        Asunto:
+                      </label>
+                      <input
+                        id="largeInput"
+                        type="text"
+                        name="largeInput"
+                        // onChange={(e) => setEmail(e.target.value)}
+                        className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
+                        value={detalis.nombInci}
+                      />
+                    </div>
+                    {/* ------------------------- */}
+
+
                   </div>
                   {/* Solución al caso:  */}
                   <div className="mt-6">

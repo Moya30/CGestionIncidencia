@@ -33,7 +33,7 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
             >
               <TableCell dataLabel="ID" showLabel={true}>
                 <span className="font-medium text-sm text-gray-900">
-                  {row.idUsua}
+                  {row.usuario.idUsua}
                 </span>
               </TableCell>
               <TableCell dataLabel="Nombre" showLabel={true}>

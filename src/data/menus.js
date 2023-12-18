@@ -13,7 +13,7 @@ import {
 
 const initMenu = [
   {
-    label: "Dashboard",
+    label: "Reportes",
     path: "/dashboard",
     icon: faHouse,
   },
@@ -36,19 +36,6 @@ const initMenu = [
     icon: faTicket,
   },
 
-  {
-    label: 'Reportes'
-  },
-  {
-    label: "Reporte de incidencias",
-    path: "/Reportes/ReporteUser",
-    icon: faFile,
-  },
-
-
-  {
-    label: 'Opciones'
-  },
   // {
   //   label: "Login",
   //   path: "/auth/login",

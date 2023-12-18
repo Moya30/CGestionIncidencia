@@ -1,28 +1,44 @@
 import React, { useEffect, useState } from "react";
-//import StatisticWidget from "../components/Widget/Statistic.jsx";
-//import AchievementWidget from "../components/Widget/Achievment.jsx";
+import axios from "axios";
 import DashboardHeader from "../components/Other/DashboardHeader.jsx";
-import ScrolledCard from "../components/Widget/ScrolledCard.jsx";
 import { useOutletContext } from "react-router-dom";
 import LinesChart from "../components/Graficos/LinesChart.jsx";
 import BarsChart from "../components/Graficos/BarsChart.jsx";
+import Title from "../components/Title/Title.jsx";
 
 function Dashboard() {
-
-
-
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
   const [fot, setFot] = useState([]);
   const [id, setId] = useState(0);
-  
+
+  const descargarArchivo = async () => {
+    try {
+      const respuesta = await axios.get(
+        "https://incidencias-fiisi.up.railway.app/api/usuario/reporte",
+        {
+          responseType: "blob", // Especificamos que esperamos un archivo binario
+        }
+      );
+
+      // Crear un enlace temporal para descargar el archivo
+      const url = window.URL.createObjectURL(new Blob([respuesta.data]));
+      const enlace = document.createElement("a");
+      enlace.href = url;
+      enlace.setAttribute("download", "reporte.pdf"); // Puedes cambiar el nombre del archivo según la extensión esperada
+      document.body.appendChild(enlace);
+      enlace.click();
+      document.body.removeChild(enlace);
+    } catch (error) {
+      console.error("Error al descargar el archivo:", error);
+    }
+  };
 
   useEffect(() => {
-
-    const ids = localStorage.getItem('idUsua');
+    const ids = localStorage.getItem("idUsua");
     setId(ids);
     console.log(ids);
     getFoto();
-}, [id])
+  }, [id]);
 
   const avatar =
     "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80";
@@ -81,29 +97,22 @@ function Dashboard() {
   useEffect(() => {
     getIncidencias();
   }, []);
-  
-
-  
-
 
   const getFoto = () => {
     fetch(`https://incidencias-fiisi.up.railway.app/api/usuario/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        
-        const foto = data.img
-        console.log("sa", foto)
+        const foto = data.img;
+        console.log("sa", foto);
         setFot(data.img);
       })
       .catch((err) => {
         console.log(err.message);
       });
-  }
-
-
+  };
 
   const getIncidencias = () => {
-    fetch('https://incidencias-fiisi.up.railway.app/api/incidencia')
+    fetch("https://incidencias-fiisi.up.railway.app/api/incidencia")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -112,12 +121,12 @@ function Dashboard() {
       .catch((err) => {
         console.log(err.message);
       });
-  }
+  };
 
   const [sidebarToggle] = useOutletContext();
 
-  const nombre = localStorage.getItem('nombre');
-  const nom = sessionStorage.getItem('rol');
+  const nombre = localStorage.getItem("nombre");
+  const nom = sessionStorage.getItem("rol");
 
   return (
     <>
@@ -130,53 +139,30 @@ function Dashboard() {
           nomb={nom}
         />
 
-        <div className="px-2 mx-auto mainCard">
-          <h1 className="text-slate-500 pb-3 text-base md:text-lg">
-            Incidencias Pendientes
-          </h1>
+        <Title text={"Informe de los reportes"}></Title>
 
-          <div className="flex flex-row gap-x-4 overflow-hidden overflow-x-auto justify-between no-scrollbar">
-            {dataOS?.map((data, index) => (
-              <ScrolledCard key={index} data={data} />
-            ))}
-          </div>
-
-          <div className="lg:w-full w-[1024px] overflow-hidden flex flex-row justify-between text-slate-700 gap-2 lg:max-h-screen overflow-x-auto whitespace-nowrap"></div>
-
-        </div>
-        <div className="px-2 mx-auto mainCard">
-          <h1 className="text-slate-500 pb-3 text-base md:text-lg">
-            Incidencias Resueltas
-          </h1>
-
-          <div className="flex flex-row gap-x-4 overflow-hidden overflow-x-auto justify-between no-scrollbar">
-            {dataOS?.map((data, index) => (
-              <ScrolledCard key={index} data={data} />
-            ))}
-          </div>
-
-          <div className="lg:w-full w-[1024px] overflow-hidden flex flex-row justify-between text-slate-700 gap-2 lg:max-h-screen overflow-x-auto whitespace-nowrap"></div>
-
-        </div>
+        <button
+          onClick={descargarArchivo}
+          class="bg-blue-950 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center"
+        >
+          <svg class="fill-current w-4 h-4 mr-2" viewBox="0 0 20 20">
+            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+          </svg>
+          <span>Reporte de usuarios</span>
+        </button>
 
         <div className=" mainCard ">
-
-          <h1 className="text-slate-500 text-base md:text-lg ">
-            Gráficos
-          </h1>
+          <h1 className="text-slate-500 text-base md:text-lg ">Gráficos</h1>
 
           {/* <div className="lg:w-full w-[1024px] overflow-hidden flex flex-row justify-between text-slate-700 gap-2 lg:max-h-screen overflow-x-auto whitespace-nowrap"></div> */}
         </div>
         <div className=" grid grid-cols-2 gap-4 p-">
-
-
           <div className="relative">
             <LinesChart />
-          </div >
+          </div>
           <div className="relative">
             <BarsChart />
-          </div >
-
+          </div>
         </div>
       </main>
     </>

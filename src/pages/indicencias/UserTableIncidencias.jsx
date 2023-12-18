@@ -15,7 +15,7 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
 
   const fetchData = () => {
     return axios
-      .get("https://incidencias-fiisi.up.railway.app/api/incidencia")
+      .get("https://incidencias-fiisi.up.railway.app/api/incidencia/BD?search=false")
       .then((response) => setUser(response.data));
   };
 
@@ -52,9 +52,9 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
             className="bg-white border md:border-b block md:table-row rounded-md shadow-md md:rounded-none md:shadow-none mb-5"
             >
               <TableCell dataLabel="ID" showLabel={true}>
-                <span className="font-medium text-sm text-gray-900">
+                <p className="font-medium text-sm text-gray-900">
                   {row.incidencia.idInci}
-                </span>
+                </p>
               </TableCell>
               <TableCell dataLabel="AREA" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
@@ -82,6 +82,13 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
                   {moment(row.fechaInci).format('MMMM D, YYYY')}
                 </p>
               </TableCell>
+
+              <TableCell dataLabel="DIAS SOLUCIÓN" showLabel={true}>
+                <p className="font-normal text-sm text-gray-500">
+                {row.diasSolucion}
+                </p>
+              </TableCell>
+
               <TableCell dataLabel="USUARIO" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
                   {row.incidencia.usuario.nombUsua}
