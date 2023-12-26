@@ -5,11 +5,35 @@ import { useOutletContext } from "react-router-dom";
 import LinesChart from "../components/Graficos/LinesChart.jsx";
 import BarsChart from "../components/Graficos/BarsChart.jsx";
 import Title from "../components/Title/Title.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
 function Dashboard() {
   const [data, setData] = useState([]);
   const [fot, setFot] = useState([]);
   const [id, setId] = useState(0);
+
+  const descargarSolucion = async () => {
+    try {
+      const respuesta = await axios.get(
+        "https://incidencias-fiisi.up.railway.app/api/reporte/solucion",
+        {
+          responseType: "blob", // Especificamos que esperamos un archivo binario
+        }
+      );
+
+      // Crear un enlace temporal para descargar el archivo
+      const url = window.URL.createObjectURL(new Blob([respuesta.data]));
+      const enlace = document.createElement("a");
+      enlace.href = url;
+      enlace.setAttribute("download", "resportesoluciones.pdf"); // Puedes cambiar el nombre del archivo según la extensión esperada
+      document.body.appendChild(enlace);
+      enlace.click();
+      document.body.removeChild(enlace);
+    } catch (error) {
+      console.error("Error al descargar el archivo:", error);
+    }
+  };
 
   const descargarArchivo = async () => {
     try {
@@ -110,30 +134,56 @@ function Dashboard() {
           nomb={nom}
         />
 
-        <Title text={"Informe de los reportes"}></Title>
+        <div className="mainCard">
+          <Title text={"Informe de los reportes"}></Title>
 
-        {/* -----------*/}
+          <div className="border w-full border-gray-200 bg-white py-4 px-6 rounded-md">
+            <p>Decarga de documentos: </p>
+            <div class="flex justify-center">
+              <div className="pr-4">
+                {/* -----USUARIOS------*/}
+                <button
+                  onClick={descargarArchivo}
+                  className="bg-sky-900 border-sky-900 text-gray-100 px-3 py-2 mt-5 mb-4 rounded-lg  text-sm flex gap-2 items-center"
+                >
+                  <div>
+                    <FontAwesomeIcon icon={faDownload} />
+                  </div>
+                  <span>Reporte de usuarios</span>
+                </button>
+                {/* -----------*/}
+              </div>
 
-        <button
-          onClick={descargarArchivo}
-          class="bg-blue-950 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center"
-        >
-          <svg class="fill-current w-4 h-4 mr-2" viewBox="0 0 20 20">
-            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-          </svg>
-          <span>Reporte de usuarios</span>
-        </button>
+              <div className="pr-4">
+                {/* -----USUARIOS------*/}
+                <button
+                  onClick={descargarIncidencias}
+                  className="bg-sky-900 border-sky-900 text-gray-100 px-3 py-2 mt-5 mb-4 rounded-lg  text-sm flex gap-2 items-center"
+                >
+                  <div>
+                    <FontAwesomeIcon icon={faDownload} />
+                  </div>
+                  <span>Reporte de incidencias</span>
+                </button>
+                {/* -----------*/}
+              </div>
 
-        <button
-          onClick={descargarIncidencias}
-          class="bg-blue-950 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center"
-        >
-          <svg class="fill-current w-4 h-4 mr-2" viewBox="0 0 20 20">
-            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-          </svg>
-          <span>Reporte de incidencias</span>
-        </button>
-        {/* ----------- */}
+              <div className="pr-4">
+                {/* -----USUARIOS------*/}
+                <button
+                  onClick={descargarSolucion}
+                  className="bg-sky-900 border-sky-900 text-gray-100 px-3 py-2 mt-5 mb-4 rounded-lg  text-sm flex gap-2 items-center"
+                >
+                  <div>
+                    <FontAwesomeIcon icon={faDownload} />
+                  </div>
+                  <span>Reporte de soluciones</span>
+                </button>
+                {/* -----------*/}
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className=" mainCard ">
           <h1 className="text-slate-500 text-base md:text-lg ">Gráficos</h1>
