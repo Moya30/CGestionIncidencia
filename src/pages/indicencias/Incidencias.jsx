@@ -12,8 +12,6 @@ import withReactContent from "sweetalert2-react-content";
 import { show_alerta } from "../../components/Alerta/Alertas";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 import { ButtonAdd } from "../../components/Other/ButtonAdd";
 
 function Incidencias() {

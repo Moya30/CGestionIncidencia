@@ -5,7 +5,8 @@ import Goback from "../../components/Other/Goback";
 import AddIncidenc from "../../libs/Incidencia/AddIncidenc";
 import { show_alerta } from "../../components/Alerta/Alertas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { ButtonGen } from "../../components/Other/ButtonGen";
 export const AddIncidencia = () => {
   const [sidebarToggle] = useOutletContext();
   const navigate = useNavigate();
@@ -212,13 +213,18 @@ export const AddIncidencia = () => {
                     value={tipoincidencia}
                     onChange={handleIdTipoIncidencia}
                   >
-                    <option value="">Seleeccione el tipo de incidencia</option>
+                    <option value="">Seleccione el tipo de incidencia</option>
                     {optionTipoIncidencia.map((option) => (
                       <option key={option.idTipoInci} value={option.value}>
                         {option.nombTipoInci}
                       </option>
                     ))}
                   </select>
+
+                  <ButtonGen
+                    link={"/incidencias/AddIncidencia/TypeIncidencia"}
+                    name={faPlus}
+                  ></ButtonGen>
                 </div>
                 <div>
                   <label className="text-sm text-gray-800">
