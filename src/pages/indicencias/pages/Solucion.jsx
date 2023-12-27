@@ -28,7 +28,7 @@ function Solucion() {
   useEffect(() => {
     ids = localStorage.getItem('idUsua');
     setIdsua(ids);
-    console.log("sads", ids);
+    console.log("ID SOLUCION ", ids);
 
     axios
       .get(
@@ -59,7 +59,7 @@ function Solucion() {
     )
       .then(function (response) {
         if (response.data === "YA EXISTE") {
-          show_alerta("Ya existe una solución, no seas gil :v ", "error");
+          show_alerta("Esta incidencia ya esta resuelta ", "warning");
 
         } else {
           show_alerta("Solucionado", "success");
@@ -97,7 +97,7 @@ function Solucion() {
                         type="number"
                         name="defaultInput"
                         className="text-base placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={(solution.idInci)}
+                        value={(solution.incidencia.idInci)}
                         onChange={(e) => setIdInci(e.target.value)}
                         readOnly
                       />
@@ -112,7 +112,7 @@ function Solucion() {
                         type="text"
                         name="defaultInput"
                         className="text-base placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={solution.usuario.nombUsua}
+                        value={solution.incidencia.usuario.nombUsua}
                         readOnly
                       />
                     </div>
@@ -128,7 +128,7 @@ function Solucion() {
                         name="nombInci"
                         // onChange={(e) => setNombPers(e.target.value)}
                         className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                        value={solution.nombInci}
+                        value={solution.incidencia.nombInci}
                         readOnly
                       />
 
@@ -144,7 +144,7 @@ function Solucion() {
                       name="asuntoInci"
                       // onChange={(e) => setNombPers(e.target.value)}
                       className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                      value={solution.descInci}
+                      value={solution.incidencia.descInci}
                       readOnly
                     />
                   </div>
