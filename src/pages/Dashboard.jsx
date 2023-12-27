@@ -10,7 +10,7 @@ import { faDownload, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
 function Dashboard() {
   const [data, setData] = useState([]);
-  const [fot, setFot] = useState([]);
+  const [fot, setFot] = useState("");
   const [id, setId] = useState(0);
 
   const descargarSolucion = async () => {
@@ -97,9 +97,9 @@ function Dashboard() {
     fetch(`https://incidencias-fiisi.up.railway.app/api/usuario/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        const foto = data.img;
+        const foto = data.img.urlImg;
         console.log("sa", foto);
-        setFot(data.img);
+        setFot(foto);
       })
       .catch((err) => {
         console.log(err.message);

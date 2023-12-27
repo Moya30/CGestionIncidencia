@@ -8,7 +8,7 @@ export const Sidebaruser = ({user,nomb,fot}) => {
           <div className="flex-none w-14 h-14 m-4">
             <img
               className=" w-14 h-14 rounded-full shadow-md"
-              src={`data:image/png;base64,${fot}`}
+              src={fot}
               alt="Bonnie image"
             />
           </div>

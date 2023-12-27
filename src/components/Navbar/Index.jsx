@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 function Index({ toggle }) {
   const nombre = sessionStorage.getItem("rol");
   const [id, setId] = useState(0);
-  const [fot, setFot] = useState([]);
+  const [fot, setFot] = useState("");
 
   useEffect(() => {
 
@@ -20,9 +20,9 @@ const getFoto = () => {
     .then((response) => response.json())
     .then((data) => {
       
-      const foto = data.img
+      const foto = data.img.urlImg
       console.log("sa", foto)
-      setFot(data.img);
+      setFot(foto);
     })
     .catch((err) => {
       console.log(err.message);
@@ -59,7 +59,7 @@ const getFoto = () => {
                   <span>
                     <img
                       className="rounded-full h-9 w-9 border cursor-pointer"
-                      src={`data:image/png;base64,${fot}`}
+                      src={fot}
                       alt="Avatar"
                     />
                   </span>

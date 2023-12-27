@@ -16,7 +16,7 @@ function Sidebar({ ...props }) {
   const [menus, setMenus] = useState(initMenus);
   const [scButton, setScButton] = useState(false);
   const search = useRef("");
-  const [fot, setFot] = useState([]);
+  const [fot, setFot] = useState("");
   const [id, setId] = useState(0);
 
 
@@ -35,7 +35,7 @@ function Sidebar({ ...props }) {
       .then((response) => response.json())
       .then((data) => {
 
-        const foto = data.img
+        const foto = data.img.urlImg
         console.log("sa", foto)
         setFot(foto);
       })
