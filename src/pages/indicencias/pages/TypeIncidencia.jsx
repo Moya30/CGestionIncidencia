@@ -1,24 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../../components/Navbar/Index";
-import { useOutletContext } from "react-router-dom";
+import { Navigate, useOutletContext } from "react-router-dom";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreateIncidencia from "../../../libs/TypeInciencia/CreateIncidencia";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const TypeIncidencia = () => {
   const [sidebarToggle] = useOutletContext();
 
-  const [idTipoInci,setIdTipoInci] = useState("");
-  const [nombTipoInci,setNombTipoInci] = useState("");
-  const [diasTipoInci,setDiasTipoInci] = useState("");
-  const [presuTipoInci,setPresuTipoInci] = useState("");
-  const [prioridad,setPrioridad] = useState("");
- 
+  const [idTipoInci, setIdTipoInci] = useState(0);
+  const [nombTipoInci, setNombTipoInci] = useState("");
+  const [diasTipoInci, setDiasTipoInci] = useState("");
+  const [presuTipoInci, setPresuTipoInci] = useState("");
+  const [nombPrio, setNombPrio] = useState("");
+
   // combo
   const [options, setOptions] = useState([]);
 
-
+  useEffect(() => {
+    axios
+      .get("https://incidencias-fiisi.up.railway.app/api/prioridad")
+      .then((response) => {
+        setOptions(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los datos de la API", error);
+      });
+  }, []);
 
 
   const handleSumitChange = async (e) => {
@@ -26,28 +37,25 @@ export const TypeIncidencia = () => {
 
     const user = await CreateIncidencia(
         idTipoInci,
-        nombTipoInci,
-        diasTipoInci,
-        presuTipoInci,
-        prioridad,
+      nombTipoInci,
+      diasTipoInci,
+      presuTipoInci,
+      nombPrio
     );
 
     if (user.status === 401) {
-      toast.error('Error')
-      console.log("sas|")
-
+      toast.error("Error");
+      console.log("sas|");
     } else {
-      toast.success('Usuario registrado')
+      toast.success("Usuario registrado");
 
       const esperarYMostrarMensaje = async () => {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        navigate(`/Usuario/User`);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       };
 
       esperarYMostrarMensaje();
-
     }
-  }
+  };
 
   return (
     <main className="h-full">
@@ -90,7 +98,7 @@ export const TypeIncidencia = () => {
                   id="defaultInput"
                   type="text"
                   name="defaultInput"
-                  onChange={(e) => setNombInci(e.target.value)}
+                  onChange={(e) => setNombTipoInci(e.target.value)}
                   className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
                   placeholder="Nombre del tipo de incidencia"
                 />
@@ -104,7 +112,7 @@ export const TypeIncidencia = () => {
                   id="defaultInput"
                   type="text"
                   name="defaultInput"
-                  onChange={(e) => setNombInci(e.target.value)}
+                  onChange={(e) => setDiasTipoInci(e.target.value)}
                   className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
                   placeholder="Estimación de días"
                 />
@@ -118,7 +126,7 @@ export const TypeIncidencia = () => {
                   id="defaultInput"
                   type="text"
                   name="defaultInput"
-                  onChange={(e) => setNombInci(e.target.value)}
+                  onChange={(e) => setPresuTipoInci(e.target.value)}
                   className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
                   placeholder="Presupuesto estimado"
                 />
@@ -133,25 +141,31 @@ export const TypeIncidencia = () => {
                   name="country"
                   autoComplete="country-name"
                   className="block w-full rounded-md border focus:border-emerald-400 py-2 "
+                  value={nombPrio}
+                  onChange={(e) => setNombPrio(e.target.value)}
                 >
                   <option value="">Seleccione el nivel de prioridad</option>
+                  {options.map((option) => (
+                    <option key={option.idPrio} value={option.value}>
+                      {option.nombPrio}
+                    </option>
+                  ))}
                 </select>
               </div>
-
-              <div className="mt-1 flex flex-row gap-2">
-                <div className="mt-5 flex flex-row gap-4">
-                  <button className="bg-sky-900 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
-                    Guardar
-                  </button>
-                </div>
-                <div className="mt-5 flex flex-row gap-4">
-                  <button
-                    onClick={() => navigate("/incidencias")}
-                    className="bg-slate-500 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm"
-                  >
-                    Cancelar
-                  </button>
-                </div>
+            </div>
+            <div className="mt-1 flex flex-row gap-2">
+              <div className="mt-5 flex flex-row gap-4">
+                <button className="bg-sky-900 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm">
+                  Guardar
+                </button>
+              </div>
+              <div className="mt-5 flex flex-row gap-4">
+                <button
+                  onClick={() => Navigate("/incidencias")}
+                  className="bg-slate-500 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm"
+                >
+                  Cancelar
+                </button>
               </div>
             </div>
           </form>

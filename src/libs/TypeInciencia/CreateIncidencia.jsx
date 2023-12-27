@@ -1,7 +1,6 @@
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
 
-async function CreateIncidencia( idTipoInci,nombTipoInci,diasTipoInci,presuTipoInci,prioridad) {
+async function CreateIncidencia(idTipoInci,nombTipoInci,diasTipoInci,presuTipoInci,nombPrio) {
   try {
     const result = await axios.post(
       "https://incidencias-fiisi.up.railway.app/api/tipoincidencia",
@@ -10,13 +9,14 @@ async function CreateIncidencia( idTipoInci,nombTipoInci,diasTipoInci,presuTipoI
         nombTipoInci,
         diasTipoInci,
         presuTipoInci,
-        prioridad,
+        nombPrio,
       }
     );
 
-    return { user: result.data };
+    return { incidencia: result.data };
   } catch (error) {
     return { mensaje: error.response.data.mensaje };
+
   }
 }
 export default CreateIncidencia;
