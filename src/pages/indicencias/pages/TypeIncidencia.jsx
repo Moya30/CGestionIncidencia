@@ -18,16 +18,7 @@ export const TypeIncidencia = () => {
   // combo
   const [options, setOptions] = useState([]);
 
-  useEffect(() => {
-    axios.get('https://incidencias-fiisi.up.railway.app/api/prioridad')
-      .then((response) => {
 
-        setOptions(response.data);
-      })
-      .catch((error) => {
-        console.error('Error al obtener los datos de la API', error);
-      });
-  }, []);
 
 
   const handleSumitChange = async (e) => {
