@@ -11,11 +11,11 @@ import toast from "react-hot-toast";
 export const TypeIncidencia = () => {
   const [sidebarToggle] = useOutletContext();
 
-  const [idTipoInci, setIdTipoInci] = useState(0);
+
   const [nombTipoInci, setNombTipoInci] = useState("");
-  const [diasTipoInci, setDiasTipoInci] = useState("");
-  const [presuTipoInci, setPresuTipoInci] = useState("");
-  const [nombPrio, setNombPrio] = useState("");
+  const [diasTipoInci, setDiasTipoInci] = useState(0);
+  const [presuTipoInci, setPresuTipoInci] = useState(0);
+  const [nombPrio, setNombPrio] = useState([]);
 
   // combo
   const [options, setOptions] = useState([]);
@@ -36,7 +36,6 @@ export const TypeIncidencia = () => {
     e.preventDefault();
 
     const user = await CreateIncidencia(
-        idTipoInci,
       nombTipoInci,
       diasTipoInci,
       presuTipoInci,
