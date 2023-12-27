@@ -79,7 +79,7 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
               </TableCell>
               <TableCell dataLabel="FECHA" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
-                  {moment(row.fechaInci).format('MMMM D, YYYY')}
+                  {moment(row.incidencia.fechaInci).format('MMMM D, YYYY')}
                 </p>
               </TableCell>
 
