@@ -134,7 +134,7 @@ function Incidencias() {
           <div className="border w-full border-gray-200 bg-white py-4 px-6 rounded-md">
             <ButtonAdd
               link={"/incidencias/AddIncidencia"}
-              name={"Nuevo incidencia"}
+              name={"Registrar incidencia"}
             ></ButtonAdd>
 
             <UserTableIncidencias

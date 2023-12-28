@@ -74,7 +74,7 @@ export const TypeIncidencia = () => {
 
             <div className="shrink w-8 h-14">/</div>
             <div className="shrink w-40 h-14">
-              <Link to={"/incidencias/AddIncidencia"}>Reportar incidencia</Link>
+              <Link to={"/incidencias/AddIncidencia"}>Registrar incidencia</Link>
             </div>
             <div className="shrink w-8 h-14">/</div>
             <div className="shrink w-64 h-14">Tipo de incidencia</div>
@@ -160,7 +160,7 @@ export const TypeIncidencia = () => {
               </div>
               <div className="mt-5 flex flex-row gap-4">
                 <button
-                  onClick={() => Navigate("/incidencias")}
+                  onClick={() => Navigate("/incidencias/")}
                   className="bg-slate-500 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm"
                 >
                   Cancelar

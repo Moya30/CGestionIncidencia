@@ -16,7 +16,7 @@ import { useState } from "react";
 import { ReporteUser } from "./pages/Reportes/ReporteUser";
 import { AddIncidencia } from "./pages/indicencias/AddIncidencia";
 import { TypeIncidencia } from "./pages/indicencias/pages/TypeIncidencia";
-
+import { EditUsuario } from "./pages/Usuario/EditUsuario";
 
 function AppRouter() {
 
@@ -37,6 +37,7 @@ function AppRouter() {
                 <Route path="/Usuario/User" element={<User />}></Route>
                 <Route path="/Usuario/DetailsUser" element={<DetailsUser />}></Route>
                 <Route path="/Usuario/ViewUser" element={<ViewUser />}></Route>
+                <Route path="/Usuario/EditUsuario" element={<EditUsuario />}></Route>
                 <Route path="/Reportes/ReporteUser" element={<ReporteUser />}></Route>
                 <Route path="/404" element={<NotFound />}></Route>
                 <Route path="/form" element={<Form />}></Route>

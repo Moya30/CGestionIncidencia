@@ -1,4 +1,6 @@
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
+import React, { useState } from 'react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,52 +13,87 @@ import {
     Filler,
 } from 'chart.js';
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-    Filler
-);
 
-var beneficios = [0, 56, 20, 36, 80, 40, 30, -20, 25, 30, 12, 60];
-var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-var midata = {
-    labels: meses,
-    datasets: [ // Cada una de las líneas del gráfico
-        {
-            label: 'Incidencias Pendientes',
-            data: beneficios,
-            tension: 0.5,
-            fill : true,
-            borderColor: 'rgb(255, 99, 132, 0.5)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            pointRadius: 5,
-            pointBorderColor: 'rgba(255, 99, 132)',
-            pointBackgroundColor: 'rgba(255, 99, 132)',
-        },
-        {
-            label: 'Incidencias Resueltas',
-            data: [20, 25, 60, 65, 45, 10, 0, 25, 35, 7, 20, 25]
-        },
-    ],
-};
+export const LinesChart = () => {
 
-var misoptions = {
-    scales : {
-        y : {
-            min : 0
-        },
-        x: {
-            ticks: { color: 'rgb(255, 99, 132)'}
+ const [procesos, setProcesos] = useState(0);
+ const [resueltas, setResueltas] = useState(0)
+
+
+    ChartJS.register(
+        CategoryScale,
+        LinearScale,
+        PointElement,
+        LineElement,
+        Title,
+        Tooltip,
+        Legend,
+        Filler
+    );
+
+    
+   
+   
+
+    axios.get('https://incidencias-fiisi.up.railway.app/api/incidencia/reporte/seguimiento')
+        .then((response) => {
+
+            setProcesos(response.data.Proceso.cantidad)
+            console.log("grad", response.data.Proceso.cantidad)
+            setResueltas(response.data.Resuelto.cantidad)
+        })
+        .catch((error) => {
+            console.error('Error al obtener los datos de la API', error);
+        });
+
+
+
+    var beneficios = [0,procesos];
+    var resuelt  =   [0,resueltas];
+    var meses = ["en proceso", "resueltas"];
+
+    var midata = {
+        labels: meses,
+        datasets: [ // Cada una de las líneas del gráfico
+            {
+                label: 'Incidencias en proceso',
+                data: beneficios,
+                tension: 0.5,
+                fill: true,
+                borderColor: 'rgb(255, 99, 132, 0.5)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                pointRadius: 5,
+                pointBorderColor: 'rgba(255, 100, 132, 0.5)',
+                pointBackgroundColor: 'rgba(255, 12, 132, 0.5)',
+            },
+            {
+                label: 'Incidencias Resueltas',
+                data: resuelt,
+               
+            },
+        ],
+    };
+
+    var misoptions = {
+        scales: {
+            y: {
+                min: 0
+            },
+            x: {
+                ticks: { color: 'rgb(255, 99, 132)' }
+            }
         }
-    }
-};
+    };
 
-export default function LinesChart() {
-    return <Line data={midata} options={misoptions}/>
+
+
+    return (
+        <>
+            <Line data={midata} options={misoptions} />
+
+        </>
+    )
 }
+
+

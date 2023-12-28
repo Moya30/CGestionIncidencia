@@ -60,7 +60,7 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
                   <FontAwesomeIcon icon={faEye} />
                 </Link>
                 <Link
-                  to={`/auth/master/user/${row.id}/edit`}
+                  to={`/Usuario/EditUsuario?usuarioID=${row.usuario.idUsua}`}
                   className={`text-gray-500inline-flex py-2 px-2 rounded  text-sm`}
                 >
                   <FontAwesomeIcon icon={faPencil} />
@@ -70,7 +70,8 @@ function UserTable({ loading, dataHeader, data, handleDelete }) {
                     e.preventDefault();
                     handleDelete(row.usuario.idUsua, row.usuario.nombUsua);
                   }}
-                  to={`/auth/master/user/${row.id}/edit`}
+                  // to={`incidencias/visualizar?incidenciaID=${row.usuario.idUsua}`}
+                  
                   className={`text-gray-500 inline-flex py-2 px-2 rounded  text-sm`}
                 >
                   <FontAwesomeIcon icon={faTrash} />

@@ -85,7 +85,8 @@ function UserTableIncidencias({ loading, dataHeader, data, handleDelete }) {
 
               <TableCell dataLabel="DIAS SOLUCIÓN" showLabel={true}>
                 <p className="font-normal text-sm text-gray-500">
-                {row.diasSolucion}
+                
+                {row.diasSolucion.substring(2, 16)}
                 </p>
               </TableCell>
 

@@ -201,31 +201,34 @@ export const AddIncidencia = () => {
                     ))}
                   </select>
                 </div>
-                <div className="mt-1">
-                  <label className="block text-sm font-medium leading-6">
-                    Tipo de incidencia
-                  </label>
-                  <select
-                    id="country"
-                    name="country"
-                    autoComplete="country-name"
-                    className="block w-full rounded-md border focus:border-emerald-400 py-2 "
-                    value={tipoincidencia}
-                    onChange={handleIdTipoIncidencia}
-                  >
-                    <option value="">Seleccione el tipo de incidencia</option>
-                    {optionTipoIncidencia.map((option) => (
-                      <option key={option.idTipoInci} value={option.value}>
-                        {option.nombTipoInci}
-                      </option>
-                    ))}
-                  </select>
-
-                  <ButtonGen
-                    link={"/incidencias/AddIncidencia/TypeIncidencia"}
-                    name={faPlus}
-                  ></ButtonGen>
-                </div>
+              <div className="grid grid-cols-2 gap-4">
+                  <div className="mt-1">
+                    <label className="block text-sm font-medium leading-6">
+                      Tipo de incidencia
+                    </label>
+                    <select
+                      id="country"
+                      name="country"
+                      autoComplete="country-name"
+                      className="block w-full rounded-md border focus:border-emerald-400 py-2 "
+                      value={tipoincidencia}
+                      onChange={handleIdTipoIncidencia}
+                    >
+                      <option value="">Seleccione el tipo de incidencia</option>
+                      {optionTipoIncidencia.map((option) => (
+                        <option key={option.idTipoInci} value={option.value}>
+                          {option.nombTipoInci}
+                        </option>
+                      ))}
+                    </select>
+                    </div>
+                  <div className="mt-2">
+                    <ButtonGen
+                      link={"/incidencias/AddIncidencia/TypeIncidencia"}
+                      name={faPlus}
+                    ></ButtonGen>
+                  </div>
+                 </div> 
                 <div>
                   <label className="text-sm text-gray-800">
                     Nombre incidencia
@@ -262,7 +265,7 @@ export const AddIncidencia = () => {
                 </div>
                 <div className="mt-5 flex flex-row gap-4">
                   <button
-                    onClick={() => navigate("/incidencias")}
+                    onClick={() => navigate("/Incidencias")}
                     className="bg-slate-500 text-gray-100 px-3 py-2 rounded-lg shadow-lg text-sm"
                   >
                     Cancelar
