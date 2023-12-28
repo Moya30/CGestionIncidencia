@@ -13,6 +13,50 @@ function Dashboard() {
   const [fot, setFot] = useState("");
   const [id, setId] = useState(0);
 
+  const descargarIáreaxsalon = async () => {
+    try {
+      const respuesta = await axios.get(
+        "https://incidencias-fiisi.up.railway.app/api/reporte/areasalon",
+        {
+          responseType: "blob", // Especificamos que esperamos un archivo binario
+        }
+      );
+
+      // Crear un enlace temporal para descargar el archivo
+      const url = window.URL.createObjectURL(new Blob([respuesta.data]));
+      const enlace = document.createElement("a");
+      enlace.href = url;
+      enlace.setAttribute("download", "incidenciaslista.pdf"); // Puedes cambiar el nombre del archivo según la extensión esperada
+      document.body.appendChild(enlace);
+      enlace.click();
+      document.body.removeChild(enlace);
+    } catch (error) {
+      console.error("Error al descargar el archivo:", error);
+    }
+  };
+
+  const descargarIncidenciascompletas = async () => {
+    try {
+      const respuesta = await axios.get(
+        "https://incidencias-fiisi.up.railway.app/api/reporte/incidenciaall",
+        {
+          responseType: "blob", // Especificamos que esperamos un archivo binario
+        }
+      );
+
+      // Crear un enlace temporal para descargar el archivo
+      const url = window.URL.createObjectURL(new Blob([respuesta.data]));
+      const enlace = document.createElement("a");
+      enlace.href = url;
+      enlace.setAttribute("download", "incidenciaslista.pdf"); // Puedes cambiar el nombre del archivo según la extensión esperada
+      document.body.appendChild(enlace);
+      enlace.click();
+      document.body.removeChild(enlace);
+    } catch (error) {
+      console.error("Error al descargar el archivo:", error);
+    }
+  };
+
   const descargarSolucion = async () => {
     try {
       const respuesta = await axios.get(
@@ -34,6 +78,7 @@ function Dashboard() {
       console.error("Error al descargar el archivo:", error);
     }
   };
+
 
   const descargarArchivo = async () => {
     try {
@@ -70,7 +115,7 @@ function Dashboard() {
       const url = window.URL.createObjectURL(new Blob([respuesta.data]));
       const enlace = document.createElement("a");
       enlace.href = url;
-      enlace.setAttribute("download", "incidencias.pdf"); // Puedes cambiar el nombre del archivo según la extensión esperada
+      enlace.setAttribute("download", "incidenciasgrafico.pdf"); // Puedes cambiar el nombre del archivo según la extensión esperada
       document.body.appendChild(enlace);
       enlace.click();
       document.body.removeChild(enlace);
@@ -181,6 +226,36 @@ function Dashboard() {
                 </button>
                 {/* -----------*/}
               </div>
+
+              <div className="pr-4">
+                {/* -----USUARIOS------*/}
+                <button
+                  onClick={descargarIncidenciascompletas}
+                  className="bg-sky-900 border-sky-900 text-gray-100 px-3 py-2 mt-5 mb-4 rounded-lg  text-sm flex gap-2 items-center"
+                >
+                  <div>
+                    <FontAwesomeIcon icon={faDownload} />
+                  </div>
+                  <span>Informe de las incidencias por lista</span>
+                </button>
+                {/* -----------*/}
+              </div>
+
+              <div className="pr-4">
+                {/* -----USUARIOS------*/}
+                <button
+                  onClick={descargarIáreaxsalon}
+                  className="bg-sky-900 border-sky-900 text-gray-100 px-3 py-2 mt-5 mb-4 rounded-lg  text-sm flex gap-2 items-center"
+                >
+                  <div>
+                    <FontAwesomeIcon icon={faDownload} />
+                  </div>
+                  <span>Informe áreas por salón</span>
+                </button>
+                {/* -----------*/}
+              </div>
+
+              
             </div>
           </div>
         </div>

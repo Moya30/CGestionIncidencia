@@ -105,7 +105,7 @@ export const TypeIncidencia = () => {
 
               <div className="mt-1">
                 <label className="text-sm text-gray-800">
-                  Estimación de días a solucionar
+                  Estimación de horas a solucionar
                 </label>
                 <input
                   id="defaultInput"
@@ -113,7 +113,7 @@ export const TypeIncidencia = () => {
                   name="defaultInput"
                   onChange={(e) => setDiasTipoInci(e.target.value)}
                   className="text-sm placeholder-gray-500 px-4 rounded-lg border border-gray-200 w-full md:py-2 py-3 focus:outline-none focus:border-emerald-400 mt-1"
-                  placeholder="Estimación de días"
+                  placeholder="Estimación de horas"
                 />
               </div>
 
